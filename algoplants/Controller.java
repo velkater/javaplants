@@ -62,9 +62,9 @@ public class Controller {
     public void hop(ActionEvent actionEvent) {
 
 
-        PerspectiveCamera camera = new PerspectiveCamera(true);
+        PerspectiveCamera camera = new PerspectiveCamera();
         camera.getTransforms().addAll (
-                new Rotate(-20, Rotate.Y_AXIS),
+                new Rotate(-40, Rotate.Y_AXIS),
                 new Rotate(-20, Rotate.X_AXIS),
                 new Translate(-30, -30, -15));
 
