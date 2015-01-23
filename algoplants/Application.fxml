@@ -13,7 +13,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="algoplants.Controller">
+<VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="algoplants.Controller">
   <stylesheets>
     <URL value="@Application.css" />
   </stylesheets>
@@ -23,10 +23,10 @@
         <Menu mnemonicParsing="false" text="%menu.title.file">
           <items>
             <MenuItem mnemonicParsing="false" onAction="#novy" text="%menu.title.new" />
-            <MenuItem mnemonicParsing="false" text="%menu.title.open" />
+            <MenuItem mnemonicParsing="false" onAction="#novacyl" text="%menu.title.open" />
             <Menu mnemonicParsing="false" text="%menu.title.open.recent" />
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="%menu.title.close" />
+            <MenuItem mnemonicParsing="false" onAction="#hop" text="%menu.title.close" />
             <MenuItem mnemonicParsing="false" text="%menu.title.save" />
             <MenuItem mnemonicParsing="false" text="%menu.title.save.as" />
             <MenuItem mnemonicParsing="false" text="%menu.title.revert" />
@@ -57,9 +57,9 @@
         </Menu>
       </menus>
     </MenuBar>
-    <SplitPane dividerPositions="0.2505567928730512, 0.7505567928730512" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+    <SplitPane dividerPositions="0.2505567928730512, 0.5" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <items>
-        <AnchorPane>
+        <AnchorPane fx:id="leftint">
           <children>
             <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="%label.text.master" textAlignment="CENTER" wrapText="false">
               <font>
@@ -71,20 +71,25 @@
             </Label>
           </children>
         </AnchorPane>
-        <ScrollPane prefHeight="-1.0" prefWidth="-1.0">
+        <ScrollPane fx:id="sc" prefHeight="-1.0" prefWidth="-1.0">
           <content>
-            <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="545.0" prefWidth="430.0">
+            <AnchorPane id="Content" fx:id="kanvas" minHeight="-1.0" minWidth="-1.0">
               <children>
+                        <SubScene id="subs" fx:id="subs" depthBuffer="true" height="200.0" width="200.0">
+                          <root>
+                            <AnchorPane fx:id="reg" />
+                          </root>
+                        </SubScene>
                 <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;" text="%label.text.view" textAlignment="CENTER" textFill="$x2" wrapText="false" />
-                        <Rectangle fx:id="rect" arcHeight="5.0" arcWidth="100.0" height="200.0" layoutX="200.0" layoutY="200.0" rotate="25.0" stroke="#ff453a"
-                                   strokeType="INSIDE" width="200.0" />
+                
               </children>
             </AnchorPane>
           </content>
         </ScrollPane>
-        <AnchorPane>
+        <AnchorPane fx:id="rightint">
           <children>
             <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;" text="%label.text.details" textAlignment="CENTER" textFill="$x2" wrapText="false" />
+                  <Rectangle fx:id="rect" arcHeight="5.0" arcWidth="100.0" height="200.0" stroke="#ff453a" strokeType="INSIDE" width="200.0" />
           </children>
         </AnchorPane>
       </items>
