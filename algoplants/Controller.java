@@ -56,6 +56,18 @@ public class Controller {
         vetev3.setLayoutY(500);
         rightint.getChildren().add(vetev3);
 
+        Leaf list = new Leaf(100,250);
+        list.setLayoutX(200);
+        list.setLayoutY(300);
+        Rotate rotx = new Rotate(0, 0, 0, 0, Rotate.X_AXIS);
+        Rotate roty = new Rotate(0, 0, 0, 0, Rotate.Y_AXIS);
+        Rotate rotz = new Rotate(0, 0, 0, 0, Rotate.Z_AXIS);
+        rotx.setAngle(30);
+        roty.setAngle(10);
+        rotz.setAngle(30);
+        list.getTransforms().addAll(rotx, roty, rotz);
+        rightint.getChildren().add(list);
+
 
     }
 
