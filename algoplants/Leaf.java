@@ -1,5 +1,6 @@
 package algoplants;
 
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.DrawMode;
@@ -15,25 +16,45 @@ public class Leaf extends MeshView {
     {
         TriangleMesh leafMesh = new TriangleMesh();
         leafMesh.getTexCoords().addAll(0,0);
-        leafMesh.getPoints().addAll(
-            0,    0,    0,            // Point 0 - Top
-            0,    h,    -s/2,         // Point 1 - Front
-            -s/2, h,    0,            // Point 2 - Left
-            s/2,  h,    0,            // Point 3 - Back
-            0,    h,    s/2           // Point 4 - Right
-        );
+        float points[] =
+        {
+            0,      -h,         0,            // vrch
+            -s/2,   0,          -h/50,         // levy predni
+            -s/2,   0,          h/50,         // levy zadni
+            s/2,    0,          h/50,         // pravy zadni
+            s/2,    0,          -h/50,         // pravy predni
+            0,      (h*2)/5,    0,         // spodni
+            -h/50,  h,    -h/50,         // konec stonku 1
+            -h/50,  h,    h/50,         // konec stonku 2
+            h/50,   h,    h/50,         // konec stonku 3
+            h/50,   h,    -h/50,      // konec stonku 4
+            0,      (h*2)/7,    0  //vrch stonku
+        };
+        leafMesh.getPoints().addAll(points);
         leafMesh.getFaces().addAll(
-                0,0,  2,0,  1,0,          // Front left face
-                0,0,  1,0,  3,0,          // Front right face
-                0,0,  3,0,  4,0,          // Back right face
-                0,0,  4,0,  2,0,          // Back left face
-                4,0,  1,0,  2,0,          // Bottom rear face
-                4,0,  3,0,  1,0           // Bottom front face
+                0,0,  1,0,  2,0,          // leva krajni
+                0,0,  2,0,  3,0,          // zadni
+                0,0,  3,0,  4,0,          // prava krajni
+                0,0,  4,0,  1,0,          // predni
+                2,0,  1,0,  5,0,          // leva krajni spodni
+                2,0,  5,0,  3,0,           // zadni spodni
+                3,0,  5,0,  4,0,          // prava krajni spodni
+                1,0,  3,0,  5,0,           // predni spodni
+                10,0,  6,0,  7,0,          // stonek leva
+                10,0,  7,0,  8,0,           // stonek zadni
+                10,0,  8,0,  9,0,          // stonek prava
+                10,0,  9,0,  6,0,           // stonek predni
+                9,0,  7,0,  8,0,          // spodek stonku
+                9,0,  7,0,  6,0           // spodek stonku
+
+
         );
         this.setMesh(leafMesh);
         this.setDrawMode(DrawMode.FILL);
         PhongMaterial material = new PhongMaterial();
-        material.setDiffuseColor(Color.BLUE);
+        material.setBumpMap(new Image("texture_leaf3.jpg"));
+        //material.setDiffuseMap(new Image("texture_leaf.jpg"));
+        //material.setDiffuseColor(Color.WHITE);
         this.setMaterial(material);
     }
 
