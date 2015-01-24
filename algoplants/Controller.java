@@ -51,19 +51,19 @@ public class Controller {
         vetev2.setLayoutY(100);
         leftint.getChildren().add(vetev2);
 
-        Branch vetev3 = new Branch();
-        vetev3.setLayoutX(200);
-        vetev3.setLayoutY(500);
-        rightint.getChildren().add(vetev3);
+        Stem stonek = new Stem();
+        stonek.setLayoutX(200);
+        stonek.setLayoutY(500);
+        rightint.getChildren().add(stonek);
 
         Leaf list = new Leaf(225,200);
-        list.setLayoutX(200);
+        list.setLayoutX(300);
         list.setLayoutY(300);
         Rotate rotx = new Rotate(0, 0, 0, 0, Rotate.X_AXIS);
         Rotate roty = new Rotate(0, 0, 0, 0, Rotate.Y_AXIS);
         Rotate rotz = new Rotate(0, 0, 0, 0, Rotate.Z_AXIS);
         rotx.setAngle(0);
-        roty.setAngle(180);
+        roty.setAngle(45);
         rotz.setAngle(0);
         list.getTransforms().addAll(rotx, roty, rotz);
         rightint.getChildren().add(list);
