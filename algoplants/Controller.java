@@ -27,7 +27,6 @@ public class Controller {
     @FXML Rectangle rect;
     @FXML AnchorPane kanvas;
     @FXML AnchorPane leftint;
-    @FXML AnchorPane rightint;
     @FXML Parent root;
     @FXML AnchorPane platno;
     @FXML SubScene subs;
@@ -51,24 +50,6 @@ public class Controller {
         vetev2.setLayoutY(100);
         leftint.getChildren().add(vetev2);
 
-        Stem stonek = new Stem();
-        stonek.setLayoutX(200);
-        stonek.setLayoutY(500);
-        rightint.getChildren().add(stonek);
-
-        Leaf list = new Leaf(225,200);
-        list.setLayoutX(300);
-        list.setLayoutY(300);
-        Rotate rotx = new Rotate(0, 0, 0, 0, Rotate.X_AXIS);
-        Rotate roty = new Rotate(0, 0, 0, 0, Rotate.Y_AXIS);
-        Rotate rotz = new Rotate(0, 0, 0, 0, Rotate.Z_AXIS);
-        rotx.setAngle(0);
-        roty.setAngle(45);
-        rotz.setAngle(0);
-        list.getTransforms().addAll(rotx, roty, rotz);
-        rightint.getChildren().add(list);
-
-
     }
 
     public void hop(ActionEvent actionEvent) {
@@ -76,28 +57,47 @@ public class Controller {
 
         PerspectiveCamera camera = new PerspectiveCamera();
         camera.getTransforms().addAll (
-                new Rotate(-40, Rotate.Y_AXIS),
-                new Rotate(-20, Rotate.X_AXIS),
-                new Translate(-30, -30, -15));
+                new Rotate(0, Rotate.Y_AXIS),
+                new Rotate(0, Rotate.X_AXIS),
+                new Translate(0, 0, -500));
 
         Branch vetev = new Branch();
         vetev.setLayoutX(100);
         vetev.setLayoutY(500);
-        Sphere sfera = new Sphere(50);
-        sfera.setLayoutY(100);
-        sfera.setLayoutX(100);
-
-        Sphere sfera2 = new Sphere(50);
-        sfera2.setLayoutY(500);
-        sfera2.setLayoutX(200);
+        Sphere sfera = new Sphere(25);
+        sfera.setLayoutY(0);
+        sfera.setLayoutX(0);
 
         AmbientLight light = new AmbientLight();
 
+        Stem stonek = new Stem();
+        stonek.setLayoutX(200);
+        stonek.setLayoutY(500);
+
+        Leaf list = new Leaf(225,200);
+        list.setLayoutX(300);
+        list.setLayoutY(300);
+        Rotate rotx = new Rotate(0, 0, 0, 0, Rotate.X_AXIS);
+        Rotate roty = new Rotate(30, 0, 0, 0, Rotate.Y_AXIS);
+        Rotate rotz = new Rotate(0, 0, 0, 0, Rotate.Z_AXIS);
+        Translate trans = new Translate(0, 0, 500);
+        rotx.setAngle(0);
+        roty.setAngle(0);
+        rotz.setAngle(0);
+        //list.setScaleX(0.2);
+        //list.setScaleY(0.2);
+        //list.setScaleZ(0.2);
+        list.getTransforms().addAll(rotx, roty, rotz, trans);
+
+        Group group = new Group();
+        subs.setRoot(group);
+
         subs.setCamera(camera);
         subs.setFill(Color.BLUEVIOLET);
+        group.getChildren().addAll(sfera, list, stonek, vetev);
 
         //subs.setRoot(reg);
-        reg.getChildren().add(sfera);
+        //reg.getChildren().addAll(sfera, list, stonek, vetev);
 
 
 

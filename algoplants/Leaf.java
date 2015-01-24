@@ -24,10 +24,10 @@ public class Leaf extends MeshView {
             s/2,    0,          h/50,         // pravy zadni
             s/2,    0,          -h/50,         // pravy predni
             0,      (h*2)/5,    0,         // spodni
-            -h/50,  h,    -h/50,         // konec stonku 1
-            -h/50,  h,    h/50,         // konec stonku 2
-            h/50,   h,    h/50,         // konec stonku 3
-            h/50,   h,    -h/50,      // konec stonku 4
+            -h/25,  h,          -h/25,         // konec stonku 1
+            -h/25,  h,          h/25,         // konec stonku 2
+            h/25,   h,          h/25,         // konec stonku 3
+            h/25,   h,          -h/25,      // konec stonku 4
             0,      (h*2)/7,    0  //vrch stonku
         };
         leafMesh.getPoints().addAll(points);

@@ -75,7 +75,7 @@
               <children>
                         <SubScene fx:id="subs" depthBuffer="true" height="600.0" width="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <root>
-                            <AnchorPane fx:id="reg" />
+                            <AnchorPane fx:id="reg" visible="false"/>
                           </root>
                         </SubScene>
                 
