@@ -52,9 +52,7 @@ public class Leaf extends MeshView {
         this.setMesh(leafMesh);
         this.setDrawMode(DrawMode.FILL);
         PhongMaterial material = new PhongMaterial();
-        material.setBumpMap(new Image("texture_leaf3.jpg"));
-        //material.setDiffuseMap(new Image("texture_leaf.jpg"));
-        //material.setDiffuseColor(Color.WHITE);
+        material.setDiffuseMap(new Image("diffuse_leaf.jpg"));
         this.setMaterial(material);
     }
 
