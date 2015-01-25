@@ -1,6 +1,7 @@
 package algoplants;
 
 import com.sun.org.omg.CORBA.Initializer;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -128,5 +129,9 @@ public class Controller {
 
 
 
+    }
+
+    public void quit(ActionEvent actionEvent) {
+        Platform.exit();
     }
 }

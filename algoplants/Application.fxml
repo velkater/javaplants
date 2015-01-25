@@ -27,7 +27,7 @@
             <MenuItem mnemonicParsing="false" onAction="#hop" text="%menu.title.close" />
             <MenuItem mnemonicParsing="false" text="%menu.title.save" />
             <MenuItem mnemonicParsing="false" text="%menu.title.save.as" />
-            <MenuItem mnemonicParsing="false" text="%menu.title.quit" />
+            <MenuItem mnemonicParsing="false" onAction="#quit" text="%menu.title.quit" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="%menu.title.help">
@@ -41,30 +41,41 @@
       <items>
             <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
               <items>
-                  <GridPane minHeight="250.0" minWidth="200.0">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                  </GridPane>
-              <AnchorPane fx:id="leftint" minHeight="200.0" minWidth="250.0">
-                <children>
-                  <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="%label.text.master" textAlignment="CENTER" wrapText="false">
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                  <Label id="label" alignment="TOP_LEFT" prefWidth="-1.0" style="&#10;" text="%label.text.master" textAlignment="CENTER" wrapText="false">
                     <font>
                       <Font size="18.0" fx:id="x1" />
                     </font>
                     <textFill>
                       <Color blue="0.624" green="0.624" red="0.624" fx:id="x2" />
                     </textFill>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
                   </Label>
-                  <Label alignment="CENTER" font="$x1" style="&#10;" text="%label.text.details" textAlignment="CENTER" textFill="$x2" wrapText="false" />
-                <Label alignment="CENTER" font="$x1" style="&#10;" text="%label.text.view" textAlignment="CENTER" textFill="$x2" wrapText="false" />
-                        <Rectangle fx:id="rect" arcHeight="5.0" arcWidth="100.0" height="200.0" stroke="#ff453a" strokeType="INSIDE" width="200.0" />
+                        <GridPane minHeight="250.0" minWidth="200.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="85.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="182.0" minHeight="10.0" prefHeight="182.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
+                        </GridPane>
+                     </children>
+                  </VBox>
+              <AnchorPane fx:id="leftint" minHeight="200.0" minWidth="250.0">
+                <children>
+                  <Label id="label" alignment="CENTER" font="$x1" style="&#10;" text="%label.text.details" textAlignment="CENTER" textFill="$x2" wrapText="false" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding></Label>
                 </children>
               </AnchorPane>
               </items>
@@ -73,9 +84,13 @@
           <content>
             <AnchorPane id="Content" fx:id="kanvas">
               <children>
+                <Label id="label" alignment="CENTER" font="$x1" style="&#10;" text="%label.text.view" textAlignment="CENTER" textFill="$x2" wrapText="false" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding></Label>
                         <SubScene fx:id="subs" depthBuffer="true" height="600.0" width="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <root>
-                            <AnchorPane fx:id="reg" visible="false"/>
+                            <AnchorPane fx:id="reg" visible="false" />
                           </root>
                         </SubScene>
                 
