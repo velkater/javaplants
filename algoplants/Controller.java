@@ -70,7 +70,7 @@ public class Controller {
         vetev.setTranslateX(-50);
         Rotate rotx2 = new Rotate(-30, 0, 0, 0, Rotate.Z_AXIS);
         Translate trans2 = new Translate(0,vetev.getHeight()/2,0);
-        vetev.getTransforms().addAll(rotx2,trans2);
+        vetev.getTransforms().addAll(rotx2, trans2);
 
 
         Sphere sfera = new Sphere(25);
@@ -130,7 +130,8 @@ public class Controller {
 
         group.getChildren().addAll(xAxis, yAxis, zAxis);
 
-
+        Turtle turtle = new Turtle(22, 50);
+        System.out.println(turtle);
 
 
 

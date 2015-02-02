@@ -9,6 +9,8 @@ public class TurtlePosition {
     private double rotY;
     //pozice na ose Y, tj.
     private double Y;
+    //velikost
+    private double scale;
 
     @Override
     public String toString() {
@@ -17,6 +19,7 @@ public class TurtlePosition {
                 ", rotX=" + rotX +
                 ", rotY=" + rotY +
                 ", Y=" + Y +
+                ", scale=" + scale +
                 '}';
     }
 
@@ -25,6 +28,15 @@ public class TurtlePosition {
         this.setRotY(0);
         this.setRotZ(0);
         this.setY(0);
+        this.setScale(1);
+    }
+
+    public double getScale() {
+        return scale;
+    }
+
+    public void setScale(double scale) {
+        this.scale = scale;
     }
 
     public double getRotZ() {
