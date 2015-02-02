@@ -17,6 +17,6 @@
     -fx-padding: 0;
 }
 
-#rect {
-    -fx-fill: #ff453a;
+#label {
+    -fx-text-fill: #6b82a0
 }

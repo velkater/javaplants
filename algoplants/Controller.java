@@ -68,6 +68,11 @@ public class Controller {
 
         Branch vetev = new Branch();
         vetev.setTranslateX(-50);
+        Rotate rotx2 = new Rotate(-30, 0, 0, 0, Rotate.Z_AXIS);
+        Translate trans2 = new Translate(0,vetev.getHeight()/2,0);
+        vetev.getTransforms().addAll(rotx2,trans2);
+
+
         Sphere sfera = new Sphere(25);
         sfera.setLayoutY(0);
         sfera.setLayoutX(0);
@@ -81,7 +86,7 @@ public class Controller {
         list.setLayoutX(0);
         list.setLayoutY(0);
         Rotate rotx = new Rotate(0, 0, 0, 0, Rotate.X_AXIS);
-        Rotate roty = new Rotate(90, 0, 0, 0, Rotate.Y_AXIS);
+        Rotate roty = new Rotate(0, 0, 0, 0, Rotate.Y_AXIS);
         Rotate rotz = new Rotate(0, 0, 0, 0, Rotate.Z_AXIS);
         Translate trans = new Translate(0, 0, 0);
         rotx.setAngle(0);
@@ -97,7 +102,7 @@ public class Controller {
 
         subs.setCamera(camera);
         subs.setFill(Color.BLUEVIOLET);
-        group.getChildren().addAll(sfera, list, stonek, vetev);
+        group.getChildren().addAll(list, stonek, vetev);
 
         //subs.setRoot(reg);
         //reg.getChildren().addAll(sfera, list, stonek, vetev);
