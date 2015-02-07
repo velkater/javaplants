@@ -12,7 +12,7 @@ public class Flower extends Sphere {
     public Flower(double radius) {
         super(radius);
         PhongMaterial material = new PhongMaterial();
-        material.setDiffuseColor(Color.LAVENDER);
+        material.setDiffuseColor(Color.RED);
         this.setMaterial(material);
     }
 }

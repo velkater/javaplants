@@ -4,13 +4,14 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Cylinder;
 import javafx.scene.image.Image;
+import javafx.scene.transform.Translate;
 
 import java.awt.*;
 
 public class Branch extends Cylinder{
 
     public Branch() {
-        this(11,150);
+        this(5,50);
     }
 
     public Branch(double radius, double height) {

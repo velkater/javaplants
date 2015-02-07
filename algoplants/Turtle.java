@@ -15,10 +15,10 @@ public class Turtle {
     private TurtlePosition position;
     private Stack<TurtlePosition> stack;
 
-    private void drawShape(Group group, Shape3D shape)
+    private void drawShape(Shape3D shape)
     {
         Rotate rotx = new Rotate(this.getPosition().getRotX(),
-                0, 0, 0, Rotate.X_AXIS);
+                0, this.getPosition().getY(), 0, Rotate.X_AXIS);
         Rotate roty = new Rotate(this.getPosition().getRotY(),
                 0, 0, 0, Rotate.Y_AXIS);
         Rotate rotz = new Rotate(this.getPosition().getRotZ(),
@@ -27,19 +27,79 @@ public class Turtle {
         shape.setScaleX(this.getPosition().getScale());
         shape.setScaleY(this.getPosition().getScale());
         shape.setScaleZ(this.getPosition().getScale());
-        shape.getTransforms().addAll(rotx,roty,rotz,trans);
+        shape.getTransforms().addAll(trans,rotx,roty,rotz);
 
     }
 
-    public void read(String code, Group group)
+    public Group read(String code)
     {
+        Group gr = new Group();
         for(int i = 0, n = code.length() ; i < n ; i++) {
             char c = code.charAt(i);
             switch (c) {
                 case 'B':
                     System.out.println("branch");
+                    Branch branch = new Branch(5,this.getStep() * this.getPosition().getScale());
+                    drawShape(branch);
+                    gr.getChildren().add(branch);
+                    break;
+                case 'L':
+                    System.out.println("leaf");
+                    Leaf leaf = new Leaf(4,5);
+                    drawShape(leaf);
+                    gr.getChildren().add(leaf);
+                    break;
+                case 'S':
+                    System.out.println("stem");
+                    Stem stem = new Stem(5,this.getStep() * this.getPosition().getScale());
+                    drawShape(stem);
+                    gr.getChildren().add(stem);
+                    break;
+                case 'F':
+                    System.out.println("flower");
+                    Flower flower = new Flower(7);
+                    drawShape(flower);
+                    gr.getChildren().add(flower);
+                    break;
+                case 'g':
+                    System.out.println("g");
+                    double Y = this.getPosition().getY();
+                    this.getPosition().setY((Y-this.getStep() * this.getPosition().getScale()));
+                    break;
+                case '+':
+                    System.out.println("plus");
+                    this.getPosition().setRotZ(-this.getDelta());
+                    break;
+                case '-':
+                    System.out.println("minus");
+                    break;
+                case '&':
+                    System.out.println("and");
+                    break;
+                case '^':
+                    System.out.println("land");
+                    break;
+                case '\\':
+                    System.out.println("\\");
+                    break;
+                case '/':
+                    System.out.println("/");
+                    break;
+                case '|':
+                    System.out.println("|");
+                    break;
+                case '[':
+                    System.out.println("[");
+                    break;
+                case ']':
+                    System.out.println("]");
+                    break;
+                default:
+                    System.out.println("chybny znak");
+                    break;
             }
         }
+        return gr;
     }
 
     public Turtle(double delta, double step) {

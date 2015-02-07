@@ -13,8 +13,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("Application.fxml"), ResourceBundle.getBundle("Application", new Locale("cs", "CZ")));
-        primaryStage.setTitle("Hello World");
+        Parent root = FXMLLoader.load(getClass().getResource("Application.fxml"),
+                ResourceBundle.getBundle("Application", new Locale("cs", "CZ")));
+        primaryStage.setTitle("Algoplants");
         primaryStage.setScene(new Scene(root, 900, 900));
         primaryStage.show();
     }
