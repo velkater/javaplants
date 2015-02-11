@@ -59,7 +59,7 @@ public class Controller {
         subs.setRoot(group);
 
         subs.setCamera(camera);
-        subs.setFill(Color.BLUEVIOLET);
+        subs.setFill(Color.SKYBLUE);
 
         System.out.println("buildAxes()");
         final PhongMaterial redMaterial = new PhongMaterial();
@@ -111,37 +111,6 @@ public class Controller {
     }
 
     public void hop(ActionEvent actionEvent) {
-
-        /*Branch vetev = new Branch();
-        vetev.setTranslateX(-50);
-        Rotate rotx2 = new Rotate(-30, 0, 0, 0, Rotate.Z_AXIS);
-        Translate trans2 = new Translate(0,vetev.getHeight()/2,0);
-        vetev.getTransforms().addAll(rotx2, trans2);
-
-
-        Sphere sfera = new Sphere(25);
-        sfera.setLayoutY(0);
-        sfera.setLayoutX(0);
-
-        AmbientLight light = new AmbientLight();
-
-        Stem stonek = new Stem();
-        stonek.setTranslateX(50);
-
-        Leaf list = new Leaf(32,36);
-        list.setLayoutX(0);
-        list.setLayoutY(0);
-        Rotate rotx = new Rotate(0, 0, 0, 0, Rotate.X_AXIS);
-        Rotate roty = new Rotate(0, 0, 0, 0, Rotate.Y_AXIS);
-        Rotate rotz = new Rotate(0, 0, 0, 0, Rotate.Z_AXIS);
-        Translate trans = new Translate(0, 0, 0);
-        rotx.setAngle(0);
-        roty.setAngle(0);
-        rotz.setAngle(0);
-        list.getTransforms().addAll(rotx, roty, rotz, trans);
-
-        group.getChildren().addAll(list, stonek, vetev);*/
-
 
         Turtle turtle = new Turtle(45, 50);
         System.out.println(turtle);
