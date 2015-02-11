@@ -146,12 +146,12 @@ public class Controller {
         Turtle turtle = new Turtle(45, 50);
         System.out.println(turtle);
 
-        String s = "Bg+B";
+        //String s = "Bg[+gBg-gBg++++gg++gB----ggBg]S";
+        String s = "Bg[+gB]gSg![+gB][-gB]gSg";
         Group gr2 = turtle.read(s);
 
         group.getChildren().add(gr2);
 
-        System.out.println(group.getChildren());
 
 
 

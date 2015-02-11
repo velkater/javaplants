@@ -1,34 +1,31 @@
 package algoplants;
 
-public class TurtlePosition {
-    //uvadi doleva nebo doprava kdyz se zelva diva nahoru
-    private double rotZ;
-    //uvadi hestli dolu nebo nahoru
-    private double rotX;
-    //otoceni sama na sobe - roll
-    private double rotY;
-    //pozice na ose Y, tj.
-    private double Y;
-    //velikost
+
+import com.sun.javafx.collections.ObservableListWrapper;
+import javafx.beans.property.SimpleListProperty;
+import javafx.collections.ObservableList;
+import javafx.collections.ObservableListBase;
+import javafx.scene.shape.Cylinder;
+import javafx.scene.transform.Transform;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
+
+public class TurtlePosition extends Cylinder {
     private double scale;
 
-    @Override
-    public String toString() {
-        return "TurtlePosition{" +
-                "rotZ=" + rotZ +
-                ", rotX=" + rotX +
-                ", rotY=" + rotY +
-                ", Y=" + Y +
-                ", scale=" + scale +
-                '}';
+    public TurtlePosition() {
+        super();
+        this.scale = 1;
     }
 
-    public TurtlePosition() {
-        this.setRotX(0);
-        this.setRotY(0);
-        this.setRotZ(0);
-        this.setY(0);
-        this.setScale(1);
+    public ObservableList<Transform> getPosition() {
+        return this.getTransforms();
+    }
+    public void AddTransform(Transform trans) {
+        this.getTransforms().add(trans);
     }
 
     public double getScale() {
@@ -39,35 +36,9 @@ public class TurtlePosition {
         this.scale = scale;
     }
 
-    public double getRotZ() {
-        return rotZ;
-    }
-
-    public void setRotZ(double rotZ) {
-        this.rotZ = rotZ;
-    }
-
-    public double getRotX() {
-        return rotX;
-    }
-
-    public void setRotX(double rotX) {
-        this.rotX = rotX;
-    }
-
-    public double getRotY() {
-        return rotY;
-    }
-
-    public void setRotY(double rotY) {
-        this.rotY = rotY;
-    }
-
-    public double getY() {
-        return Y;
-    }
-
-    public void setY(double y) {
-        Y = y;
+    @Override
+    public String toString() {
+        return "TurtlePosition{" +
+                '}';
     }
 }

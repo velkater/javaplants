@@ -1,5 +1,6 @@
 package algoplants;
 
+import javafx.geometry.Point3D;
 import javafx.scene.Group;
 import javafx.scene.shape.Shape3D;
 import javafx.scene.transform.Rotate;
@@ -17,18 +18,7 @@ public class Turtle {
 
     private void drawShape(Shape3D shape)
     {
-        Rotate rotx = new Rotate(this.getPosition().getRotX(),
-                0, this.getPosition().getY(), 0, Rotate.X_AXIS);
-        Rotate roty = new Rotate(this.getPosition().getRotY(),
-                0, 0, 0, Rotate.Y_AXIS);
-        Rotate rotz = new Rotate(this.getPosition().getRotZ(),
-                0, 0, 0, Rotate.Z_AXIS);
-        Translate trans = new Translate(0, this.getPosition().getY(), 0);
-        shape.setScaleX(this.getPosition().getScale());
-        shape.setScaleY(this.getPosition().getScale());
-        shape.setScaleZ(this.getPosition().getScale());
-        shape.getTransforms().addAll(trans,rotx,roty,rotz);
-
+        shape.getTransforms().addAll(position.getPosition());
     }
 
     public Group read(String code)
@@ -39,7 +29,8 @@ public class Turtle {
             switch (c) {
                 case 'B':
                     System.out.println("branch");
-                    Branch branch = new Branch(5,this.getStep() * this.getPosition().getScale());
+                    Branch branch = new Branch(5*this.getPosition().getScale(),
+                            this.getStep() * this.getPosition().getScale());
                     drawShape(branch);
                     gr.getChildren().add(branch);
                     break;
@@ -51,7 +42,8 @@ public class Turtle {
                     break;
                 case 'S':
                     System.out.println("stem");
-                    Stem stem = new Stem(5,this.getStep() * this.getPosition().getScale());
+                    Stem stem = new Stem(5*this.getPosition().getScale(),
+                            this.getStep() * this.getPosition().getScale());
                     drawShape(stem);
                     gr.getChildren().add(stem);
                     break;
@@ -63,36 +55,66 @@ public class Turtle {
                     break;
                 case 'g':
                     System.out.println("g");
-                    double Y = this.getPosition().getY();
-                    this.getPosition().setY((Y-this.getStep() * this.getPosition().getScale()));
+                    this.getPosition().AddTransform(
+                            new Translate(0,(-step/2)*this.getPosition().getScale(),0));
                     break;
                 case '+':
+                    //rotace doprava
                     System.out.println("plus");
-                    this.getPosition().setRotZ(-this.getDelta());
+                    this.getPosition().AddTransform(
+                            new Rotate(-delta,0,0,0,Rotate.Z_AXIS));
                     break;
                 case '-':
+                    //rotace doleva
                     System.out.println("minus");
+                    this.getPosition().AddTransform(
+                            new Rotate(delta,0,0,0,Rotate.Z_AXIS));
                     break;
                 case '&':
+                    //rotace dolu
                     System.out.println("and");
+                    this.getPosition().AddTransform(
+                            new Rotate(-delta,0,0,0,Rotate.X_AXIS));
                     break;
                 case '^':
-                    System.out.println("land");
+                    //rotace nahoru
+                    System.out.println("and");
+                    this.getPosition().AddTransform(
+                            new Rotate(delta,0,0,0,Rotate.X_AXIS));
                     break;
                 case '\\':
-                    System.out.println("\\");
+                    //rotace roll doleva
+                    System.out.println("and");
+                    this.getPosition().AddTransform(
+                            new Rotate(delta, 0, 0, 0, Rotate.Y_AXIS));
                     break;
                 case '/':
-                    System.out.println("/");
+                    //rotace roll doprava
+                    System.out.println("and");
+                    this.getPosition().AddTransform(
+                            new Rotate(-delta, 0, 0, 0, Rotate.Y_AXIS));
                     break;
                 case '|':
+                    //rotace o 180
+                    System.out.println("plus");
+                    this.getPosition().AddTransform(
+                            new Rotate(180,0,0,0,Rotate.Z_AXIS));
                     System.out.println("|");
                     break;
                 case '[':
+                    //zapamatuje si pozici v zasobniku
                     System.out.println("[");
+                    this.savePosition();
                     break;
                 case ']':
+                    //vrati se na posledni pozici do zasobniku
                     System.out.println("]");
+                    this.goToLast();
+                    break;
+                case '!':
+                    //zmensi velikost
+                    System.out.println("]");
+                    this.getPosition().setScale(this.getPosition().getScale()*0.7);
                     break;
                 default:
                     System.out.println("chybny znak");
@@ -100,6 +122,19 @@ public class Turtle {
             }
         }
         return gr;
+    }
+
+    public void savePosition() {
+        TurtlePosition savedPos = new TurtlePosition();
+        savedPos.getTransforms().addAll(position.getPosition());
+        savedPos.setScale(position.getScale());
+        stack.push(savedPos);
+        System.out.println(stack);
+    }
+
+    public void goToLast() {
+        System.out.println(stack.peek());
+        this.setPosition(stack.pop());
     }
 
     public Turtle(double delta, double step) {
@@ -115,7 +150,6 @@ public class Turtle {
                 "delta=" + delta +
                 ", step=" + step +
                 ", position=" + position +
-                ", stack=" + stack +
                 '}';
     }
 
@@ -141,13 +175,5 @@ public class Turtle {
 
     public void setPosition(TurtlePosition position) {
         this.position = position;
-    }
-
-    public Stack<TurtlePosition> getStack() {
-        return stack;
-    }
-
-    public void setStack(Stack<TurtlePosition> stack) {
-        this.stack = stack;
     }
 }
