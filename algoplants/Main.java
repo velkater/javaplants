@@ -26,13 +26,13 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        //launch(args);
-        Hashtable<Character,String> hash = new Hashtable<>();
+        launch(args);
+
+        /*Hashtable<Character,String> hash = new Hashtable<>();
         hash.put('0', "01");
         hash.put('1', "0");
         System.out.println(hash);
-        Substitution subs = new Substitution(hash, 4, "0");
-        System.out.println(subs.getCode());
+        Substitution subs = new Substitution(hash, 4, "02");*/
         /*Point3D point = new Point3D(0,-1,0);
         System.out.println(point.toString());
         Rotate rot =  new Rotate(-45,0,0,0, Rotate.Z_AXIS);

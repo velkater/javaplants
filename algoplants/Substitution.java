@@ -19,7 +19,15 @@ public class Substitution {
         for (int i = 0; i < this.getDepth(); i++) {
             for (int j = 0; j < code.length(); j++) {
                 try {
-                    tmp = tmp + table.get(code.charAt(j));
+                    if(table.get(code.charAt(j))!= null)
+                    {
+                        tmp = tmp + table.get(code.charAt(j));
+                    }
+                    else
+                    {
+                        tmp = tmp + code.charAt(j);
+                    }
+
                 }
                 catch (Exception e)
                 {

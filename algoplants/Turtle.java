@@ -28,92 +28,77 @@ public class Turtle {
             char c = code.charAt(i);
             switch (c) {
                 case 'B':
-                    System.out.println("branch");
                     Branch branch = new Branch(5*this.getPosition().getScale(),
                             this.getStep() * this.getPosition().getScale());
                     drawShape(branch);
                     gr.getChildren().add(branch);
                     break;
                 case 'L':
-                    System.out.println("leaf");
                     Leaf leaf = new Leaf(4,5);
                     drawShape(leaf);
                     gr.getChildren().add(leaf);
                     break;
                 case 'S':
-                    System.out.println("stem");
                     Stem stem = new Stem(5*this.getPosition().getScale(),
                             this.getStep() * this.getPosition().getScale());
                     drawShape(stem);
                     gr.getChildren().add(stem);
                     break;
                 case 'F':
-                    System.out.println("flower");
                     Flower flower = new Flower(7);
                     drawShape(flower);
                     gr.getChildren().add(flower);
                     break;
                 case 'g':
-                    System.out.println("g");
                     this.getPosition().AddTransform(
                             new Translate(0,(-step/2)*this.getPosition().getScale(),0));
                     break;
                 case '+':
                     //rotace doprava
-                    System.out.println("plus");
                     this.getPosition().AddTransform(
                             new Rotate(-delta,0,0,0,Rotate.Z_AXIS));
                     break;
                 case '-':
                     //rotace doleva
-                    System.out.println("minus");
                     this.getPosition().AddTransform(
                             new Rotate(delta,0,0,0,Rotate.Z_AXIS));
                     break;
                 case '&':
                     //rotace dolu
-                    System.out.println("and");
                     this.getPosition().AddTransform(
                             new Rotate(-delta,0,0,0,Rotate.X_AXIS));
                     break;
                 case '^':
                     //rotace nahoru
-                    System.out.println("and");
                     this.getPosition().AddTransform(
                             new Rotate(delta,0,0,0,Rotate.X_AXIS));
                     break;
                 case '\\':
                     //rotace roll doleva
-                    System.out.println("and");
                     this.getPosition().AddTransform(
                             new Rotate(delta, 0, 0, 0, Rotate.Y_AXIS));
                     break;
                 case '/':
                     //rotace roll doprava
-                    System.out.println("and");
                     this.getPosition().AddTransform(
                             new Rotate(-delta, 0, 0, 0, Rotate.Y_AXIS));
                     break;
                 case '|':
                     //rotace o 180
-                    System.out.println("plus");
                     this.getPosition().AddTransform(
                             new Rotate(180,0,0,0,Rotate.Z_AXIS));
                     System.out.println("|");
                     break;
                 case '[':
                     //zapamatuje si pozici v zasobniku
-                    System.out.println("[");
                     this.savePosition();
                     break;
                 case ']':
                     //vrati se na posledni pozici do zasobniku
-                    System.out.println("]");
                     this.goToLast();
                     break;
                 case '!':
                     //zmensi velikost
-                    System.out.println("]");
                     this.getPosition().setScale(this.getPosition().getScale()*0.7);
                     break;
                 default:
@@ -129,11 +114,11 @@ public class Turtle {
         savedPos.getTransforms().addAll(position.getPosition());
         savedPos.setScale(position.getScale());
         stack.push(savedPos);
-        System.out.println(stack);
+        //System.out.println(stack);
     }
 
     public void goToLast() {
-        System.out.println(stack.peek());
+        //System.out.println(stack.peek());
         this.setPosition(stack.pop());
     }
 

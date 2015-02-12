@@ -49,9 +49,9 @@ public class Controller {
         PerspectiveCamera camera = new PerspectiveCamera(true);
         camera.getTransforms().addAll (
                 new Rotate(-30, Rotate.Y_AXIS),
-                new Rotate(-30, Rotate.X_AXIS),
+                new Rotate(10, Rotate.X_AXIS),
                 new Rotate(0, Rotate.Z_AXIS),
-                new Translate(0, 0, -300));
+                new Translate(0, -500, -1300));
         camera.setNearClip(0.1);
         camera.setFarClip(2000.0);
         camera.setFieldOfView(60);
@@ -60,7 +60,7 @@ public class Controller {
         subs.setRoot(group);
 
         subs.setCamera(camera);
-        subs.setFill(Color.SKYBLUE);
+        subs.setFill(Color.DEEPSKYBLUE);
 
         System.out.println("buildAxes()");
         final PhongMaterial redMaterial = new PhongMaterial();
@@ -83,7 +83,15 @@ public class Controller {
         yAxis.setMaterial(greenMaterial);
         zAxis.setMaterial(blueMaterial);
 
-        group.getChildren().addAll(xAxis, yAxis, zAxis);
+        Box grass = new Box(3000, 3, 3000);
+        PhongMaterial material = new PhongMaterial();
+        material.setDiffuseColor(Color.SADDLEBROWN);
+        grass.getTransforms().add(new Rotate(0, Rotate.X_AXIS));
+        grass.getTransforms().add(new Translate(0,10,0));
+        grass.setMaterial(material);
+
+
+        group.getChildren().addAll(xAxis, yAxis, zAxis, grass);
 
         System.out.println("inicializovano");
     }
@@ -113,12 +121,28 @@ public class Controller {
 
     public void hop(ActionEvent actionEvent) {
 
+        Hashtable<Character,String> hash = new Hashtable<>();
+        hash.put('B', "B[+B]B[-B]B");
+        System.out.println(hash);
+        Substitution subs = new Substitution(hash, 3, "B");
+        System.out.println(subs.getCode());
+
+        String code = subs.getCode();
         Turtle turtle = new Turtle(45, 50);
         System.out.println(turtle);
 
+        String r = "";
+        for (int i = 0; i <code.length(); i++) {
+            if (code.charAt(i)=='B')
+                r = r + "gBg";
+            else
+                r = r + code.charAt(i);
+        }
+        System.out.println(r);
+
         String s = "Bg[+gBg-gBg++++gg++gB----ggBg]S";
         //String s = "Bg[+gB]gSg![+gB][-gB]gSg";
-        Group gr2 = turtle.read(s);
+        Group gr2 = turtle.read(r);
 
         group.getChildren().add(gr2);
 
