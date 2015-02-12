@@ -24,6 +24,7 @@ import javafx.scene.transform.Translate;
 
 import java.awt.*;
 import java.awt.ScrollPane;
+import java.util.Hashtable;
 import java.util.Observable;
 
 // bommry
@@ -115,12 +116,11 @@ public class Controller {
         Turtle turtle = new Turtle(45, 50);
         System.out.println(turtle);
 
-        //String s = "Bg[+gBg-gBg++++gg++gB----ggBg]S";
-        String s = "Bg[+gB]gSg![+gB][-gB]gSg";
+        String s = "Bg[+gBg-gBg++++gg++gB----ggBg]S";
+        //String s = "Bg[+gB]gSg![+gB][-gB]gSg";
         Group gr2 = turtle.read(s);
 
         group.getChildren().add(gr2);
-
 
 
 

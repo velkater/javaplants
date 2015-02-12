@@ -9,6 +9,7 @@ import javafx.scene.input.RotateEvent;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 
+import java.util.Hashtable;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -25,7 +26,13 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        launch(args);
+        //launch(args);
+        Hashtable<Character,String> hash = new Hashtable<>();
+        hash.put('0', "01");
+        hash.put('1', "0");
+        System.out.println(hash);
+        Substitution subs = new Substitution(hash, 4, "0");
+        System.out.println(subs.getCode());
         /*Point3D point = new Point3D(0,-1,0);
         System.out.println(point.toString());
         Rotate rot =  new Rotate(-45,0,0,0, Rotate.Z_AXIS);
