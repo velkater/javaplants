@@ -17,6 +17,10 @@
     -fx-padding: 0;
 }
 
-#label {
+#title {
+    -fx-text-fill: #6b82a0
+}
+
+.settings {
     -fx-text-fill: #6b82a0
 }

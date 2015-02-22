@@ -39,11 +39,11 @@
     </MenuBar>
     <SplitPane dividerPositions="0.2505567928730512" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <items>
-            <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+            <SplitPane orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
               <items>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
+                  <VBox minWidth="300.0">
                      <children>
-                  <Label id="label" alignment="TOP_LEFT" prefWidth="-1.0" style="&#10;" text="%label.text.master" textAlignment="CENTER" wrapText="false">
+                  <Label id="title" alignment="TOP_LEFT" prefWidth="-1.0" style="&#10;" text="%label.text.master" textAlignment="CENTER" wrapText="false">
                     <font>
                       <Font size="18.0" fx:id="x1" />
                     </font>
@@ -54,45 +54,73 @@
                               <Insets left="10.0" top="10.0" />
                            </padding>
                   </Label>
-                        <GridPane minHeight="250.0" minWidth="200.0">
+                        <GridPane fx:id="gridpane" minHeight="250.0" minWidth="200.0" prefHeight="544.0" prefWidth="222.0">
                           <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="100.0" />
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                           </columnConstraints>
                           <rowConstraints>
-                            <RowConstraints maxHeight="85.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-                            <RowConstraints maxHeight="182.0" minHeight="10.0" prefHeight="182.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="60.0" minHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="60.0" minHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="60.0" minHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="60.0" minHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <padding>
                               <Insets left="10.0" top="10.0" />
                            </padding>
+                           <children>
+                              <Button id="drawbutton" alignment="CENTER" contentDisplay="CENTER" minWidth="70.0" mnemonicParsing="false" onAction="#drawButton" text="%draw" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <GridPane.margin>
+                                    <Insets right="10.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <Label id="subtitle" text="Seed" />
+                              <Separator prefWidth="200.0" GridPane.rowIndex="1" />
+                              <Separator prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField GridPane.columnIndex="1">
+                                 <GridPane.margin>
+                                    <Insets right="10.0" />
+                                 </GridPane.margin></TextField>
+                              <Label id="subtitle" text="%settings.rules" GridPane.rowIndex="2" />
+                              <Label id="subtitle" text="%settings.steps" GridPane.rowIndex="5" />
+                              <Separator prefWidth="200.0" GridPane.rowIndex="4" />
+                              <Separator prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <Button id="plusbutton" minWidth="70.0" mnemonicParsing="false" onAction="#plusButton" text="+" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets right="10.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                 <GridPane.margin>
+                                    <Insets right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <VBox fx:id="rulesbox" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                           </children>
                         </GridPane>
                      </children>
                   </VBox>
-              <AnchorPane fx:id="leftint" minHeight="200.0" minWidth="250.0">
-                <children>
-                  <Label id="label" alignment="CENTER" font="$x1" style="&#10;" text="%label.text.details" textAlignment="CENTER" textFill="$x2" wrapText="false" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <padding>
-                              <Insets left="10.0" top="10.0" />
-                           </padding></Label>
-                </children>
-              </AnchorPane>
               </items>
             </SplitPane>
         <ScrollPane fx:id="sc" prefHeight="-1.0" prefWidth="-1.0">
           <content>
             <AnchorPane id="Content" fx:id="kanvas">
               <children>
-                <Label id="label" alignment="CENTER" font="$x1" style="&#10;" text="%label.text.view" textAlignment="CENTER" textFill="$x2" wrapText="false" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <padding>
-                              <Insets left="10.0" top="10.0" />
-                           </padding></Label>
-                        <SubScene fx:id="subs" depthBuffer="true" height="700.0" width="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <SubScene fx:id="subs" depthBuffer="true" height="800.0" width="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <root>
                             <AnchorPane fx:id="reg" visible="false" />
                           </root>
                         </SubScene>
+                <Label id="title" alignment="CENTER" font="$x1" style="&#10;" text="%label.text.view" textAlignment="CENTER" textFill="$x2" wrapText="false" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding></Label>
                 
               </children>
             </AnchorPane>

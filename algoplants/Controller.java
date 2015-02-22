@@ -9,11 +9,9 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Point3D;
 import javafx.scene.*;
 import javafx.scene.control.*;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Box;
@@ -33,6 +31,8 @@ public class Controller {
     @FXML AnchorPane leftint;
     @FXML SubScene subs;
     @FXML AnchorPane reg;
+    @FXML GridPane gridpane;
+    @FXML VBox rulesbox;
 
     private Group group;
 
@@ -44,8 +44,11 @@ public class Controller {
         this.group = group;
     }
 
+    private Hashtable<Character,String> rules;
+
     @FXML
     protected void initialize() {
+        this.rules = new Hashtable<>();
         PerspectiveCamera camera = new PerspectiveCamera(true);
         camera.getTransforms().addAll (
                 new Rotate(-30, Rotate.Y_AXIS),
@@ -140,7 +143,7 @@ public class Controller {
         }
         System.out.println(r);
 
-        String s = "Bg[+gBg-gBg++++gg++gB----ggBg]S";
+        //String s = "Bg[+gBg-gBg++++gg++gB----ggBg]S";
         //String s = "Bg[+gB]gSg![+gB][-gB]gSg";
         Group gr2 = turtle.read(r);
 
@@ -152,5 +155,19 @@ public class Controller {
 
     public void quit(ActionEvent actionEvent) {
         Platform.exit();
+    }
+
+    public void drawButton(ActionEvent actionEvent) {
+        Label but = new Label("ahoj");
+        gridpane.addRow(3,but);
+    }
+
+    public void plusButton(ActionEvent actionEvent) {
+        ChoiceBox cb = new ChoiceBox();
+        cb.getItems().addAll("1", "2","3");
+        //rulesbox.getChildren().add(cb);
+        //Label but = new Label("ahoj");
+        Rule rule = new Rule();
+        rulesbox.getChildren().add(rule);
     }
 }
