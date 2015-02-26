@@ -83,7 +83,7 @@
                               <Label id="subtitle" text="Seed" />
                               <Separator prefWidth="200.0" GridPane.rowIndex="1" />
                               <Separator prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <TextField GridPane.columnIndex="1">
+                              <TextField fx:id="seedfield" GridPane.columnIndex="1">
                                  <GridPane.margin>
                                     <Insets right="10.0" />
                                  </GridPane.margin></TextField>
@@ -96,7 +96,7 @@
                                     <Insets right="10.0" />
                                  </GridPane.margin>
                               </Button>
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="5">
+                              <TextField fx:id="stepfield" GridPane.columnIndex="1" GridPane.rowIndex="5">
                                  <GridPane.margin>
                                     <Insets right="10.0" />
                                  </GridPane.margin>

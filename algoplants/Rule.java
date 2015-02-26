@@ -12,10 +12,21 @@ public class Rule extends HBox{
     public Rule() {
         super();
         choice = new ChoiceBox();
-        choice.getItems().addAll("1", "2","3");
+        choice.getItems().addAll('A', 'B','C');
         text = new TextField();
         text.setMinWidth(350);
         this.getChildren().add(choice);
         this.getChildren().add(text);
+    }
+
+    public Character getKey()
+    {
+        return (Character) this.choice.getValue();
+    }
+    public String getCode()
+    {
+        if (text.getText() != "")
+            return text.getText();
+        else return null;
     }
 }

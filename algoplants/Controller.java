@@ -1,29 +1,22 @@
 package algoplants;
 
-import com.sun.org.omg.CORBA.Initializer;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.geometry.Point3D;
 import javafx.scene.*;
 import javafx.scene.control.*;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Box;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Sphere;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
 
 import java.awt.*;
-import java.awt.ScrollPane;
 import java.util.Hashtable;
-import java.util.Observable;
+
 
 // bommry
 public class Controller {
@@ -33,6 +26,8 @@ public class Controller {
     @FXML AnchorPane reg;
     @FXML GridPane gridpane;
     @FXML VBox rulesbox;
+    @FXML TextField seedfield;
+    @FXML TextField stepfield;
 
     private Group group;
 
@@ -158,15 +153,53 @@ public class Controller {
     }
 
     public void drawButton(ActionEvent actionEvent) {
-        Label but = new Label("ahoj");
-        gridpane.addRow(3,but);
+        ObservableList<Node> list = rulesbox.getChildren();
+        Hashtable<Character,String> hash = new Hashtable<>();
+
+        for (Object rule: list)
+        {
+            if(((Rule) rule).getKey() != null
+                    && ((Rule) rule).getCode()!= null)
+            {
+                if(hash.contains(((Rule) rule).getKey()))
+                {
+                    System.out.println("Chyba");
+                }
+                else
+                {
+                    hash.put(((Rule) rule).getKey()
+                            ,((Rule) rule).getCode());
+                }
+            }
+            else
+            {
+                System.out.println("nejaky null");
+            }
+        }
+        System.out.println(hash.toString());
+        Substitution subs = new Substitution(hash,
+                Integer.parseInt(stepfield.getText()),
+                seedfield.getText());
+
+        String code = subs.getCode();
+        Turtle turtle = new Turtle(45, 50);
+        System.out.println(turtle);
+
+        String r = "";
+        for (int i = 0; i <code.length(); i++) {
+            if (code.charAt(i)=='B')
+                r = r + "gBg";
+            else
+                r = r + code.charAt(i);
+        }
+        System.out.println(r);
+
+        Group gr2 = turtle.read(r);
+
+        group.getChildren().add(gr2);
     }
 
     public void plusButton(ActionEvent actionEvent) {
-        ChoiceBox cb = new ChoiceBox();
-        cb.getItems().addAll("1", "2","3");
-        //rulesbox.getChildren().add(cb);
-        //Label but = new Label("ahoj");
         Rule rule = new Rule();
         rulesbox.getChildren().add(rule);
     }
