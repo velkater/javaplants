@@ -34,7 +34,7 @@ public class Substitution {
                     System.out.println("stala se chyba"+e.getMessage());
                 }
             }
-            System.out.println(tmp);
+            //System.out.println(tmp);
             code = tmp;
             tmp = "";
 

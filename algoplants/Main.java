@@ -28,20 +28,16 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
 
-        /*Hashtable<Character,String> hash = new Hashtable<>();
-        hash.put('0', "01");
-        hash.put('1', "0");
-        System.out.println(hash);
-        Substitution subs = new Substitution(hash, 4, "02");*/
-        /*Point3D point = new Point3D(0,-1,0);
+        /*Point3D point = new Point3D(0,0,1);
         System.out.println(point.toString());
-        Rotate rot =  new Rotate(-45,0,0,0, Rotate.Z_AXIS);
-        Rotate roty = new Rotate(180,0,0,0,Rotate.Y_AXIS);
+        Rotate rot =  new Rotate(90,0,0,0, Rotate.X_AXIS);
+
         point = rot.transform(point);
         System.out.println(point);
-        point = roty.transform(point);
-        System.out.println(point);
-        point = rot.transform(point);
+
+        Rotate rotz =  new Rotate(-90,0,0,0, Rotate.Z_AXIS);
+
+        point = rotz.transform(point);
         System.out.println(point);*/
 
     }

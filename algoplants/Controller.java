@@ -1,5 +1,9 @@
 package algoplants;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.SequentialTransition;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,15 +17,16 @@ import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Box;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
+import javafx.util.Duration;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Hashtable;
 
 
 // bommry
 public class Controller {
     @FXML AnchorPane kanvas;
-    @FXML AnchorPane leftint;
     @FXML SubScene subs;
     @FXML AnchorPane reg;
     @FXML GridPane gridpane;
@@ -30,6 +35,7 @@ public class Controller {
     @FXML TextField stepfield;
 
     private Group group;
+    private Group treegroup;
 
     public Group getGroup() {
         return group;
@@ -54,6 +60,7 @@ public class Controller {
         camera.setFarClip(2000.0);
         camera.setFieldOfView(60);
 
+        this.treegroup = new Group();
         this.group = new Group();
         subs.setRoot(group);
 
@@ -95,64 +102,65 @@ public class Controller {
     }
 
     public void novy(ActionEvent actionEvent) {
-        //rect.setFill(Color.rgb(50, 10, 10));
         Alert alert = new Alert(Alert.AlertType.INFORMATION, "neimplementovano");
         alert.showAndWait();
-        //rect.setHeight(300);
     }
 
-    public void novacyl(ActionEvent actionEvent) {
-        //Branch vetev = new Branch();
-        //vetev.setLayoutX(200);
-        //vetev.setLayoutY(100);
-        //kanvas.getChildren().add(vetev);
-
-        Branch vetev2 = new Branch();
-        vetev2.setLayoutX(200);
-        vetev2.setLayoutY(100);
-        leftint.getChildren().add(vetev2);
-        int delka = group.getChildren().size();
-        group.getChildren().remove(delka-1);
-        System.out.println(group.getChildren());
-
-    }
-
-    public void hop(ActionEvent actionEvent) {
+    public void hop(ActionEvent actionEvent) throws InterruptedException {
+        treegroup.getChildren().clear();
 
         Hashtable<Character,String> hash = new Hashtable<>();
         hash.put('B', "B[+B]B[-B]B");
-        System.out.println(hash);
+        //System.out.println(hash);
         Substitution subs = new Substitution(hash, 3, "B");
-        System.out.println(subs.getCode());
+        //System.out.println(subs.getCode());
 
         String code = subs.getCode();
+        //String code = "B[-B][+B]";
         Turtle turtle = new Turtle(45, 50);
-        System.out.println(turtle);
+        //System.out.println(turtle);
 
-        String r = "";
-        for (int i = 0; i <code.length(); i++) {
-            if (code.charAt(i)=='B')
-                r = r + "gBg";
-            else
-                r = r + code.charAt(i);
-        }
-        System.out.println(r);
+        //System.out.println(code);
 
-        //String s = "Bg[+gBg-gBg++++gg++gB----ggBg]S";
-        //String s = "Bg[+gB]gSg![+gB][-gB]gSg";
-        Group gr2 = turtle.read(r);
-
-        group.getChildren().add(gr2);
+        //group.getChildren().add(treegroup);
+        treegroup = turtle.read(code);
+        group.getChildren().add(treegroup);
 
 
-
+        /*int i = 10;
+        for(Node node:treegroup.getChildren())
+        {
+            playnext(node, i);
+            i = i+10;
+        }*/
+        System.gc();
+        //Leaf leaf= new Leaf(100,100);
+        //group.getChildren().add(leaf);
     }
+    /*private void playnext(Node node, int duration)
+    {
+        SequentialTransition seq;
+        seq = makeAnimation(node);
+        seq.setDelay(Duration.millis(duration));
+        seq.delayProperty();
+        seq.play();
+    }
+    public SequentialTransition makeAnimation(Node node) {
+        Timeline grow = new Timeline();
+        KeyValue key1 = new KeyValue(node.visibleProperty(),true);
+        KeyFrame keyf = new KeyFrame(Duration.millis(10),key1);
+        grow.getKeyFrames().add(keyf);
+        SequentialTransition sequence = new SequentialTransition(grow);
+
+        return sequence;
+    }*/
 
     public void quit(ActionEvent actionEvent) {
         Platform.exit();
     }
 
     public void drawButton(ActionEvent actionEvent) {
+        treegroup.getChildren().clear();
         ObservableList<Node> list = rulesbox.getChildren();
         Hashtable<Character,String> hash = new Hashtable<>();
 
@@ -185,18 +193,14 @@ public class Controller {
         Turtle turtle = new Turtle(45, 50);
         System.out.println(turtle);
 
-        String r = "";
-        for (int i = 0; i <code.length(); i++) {
-            if (code.charAt(i)=='B')
-                r = r + "gBg";
-            else
-                r = r + code.charAt(i);
-        }
-        System.out.println(r);
 
-        Group gr2 = turtle.read(r);
+        System.out.println(code);
 
-        group.getChildren().add(gr2);
+        treegroup = turtle.read(code);
+        group.getChildren().add(treegroup);
+
+
+
     }
 
     public void plusButton(ActionEvent actionEvent) {

@@ -1,31 +1,22 @@
 package algoplants;
 
-
-import com.sun.javafx.collections.ObservableListWrapper;
-import javafx.beans.property.SimpleListProperty;
-import javafx.collections.ObservableList;
-import javafx.collections.ObservableListBase;
-import javafx.scene.shape.Cylinder;
-import javafx.scene.transform.Transform;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
+import javafx.geometry.Point3D;
 
 
-public class TurtlePosition extends Cylinder {
+
+public class TurtlePosition{
     private double scale;
+    private Point3D coordinates;
+    private Point3D H;
+    private Point3D L;
+    private Point3D U;
 
     public TurtlePosition() {
-        super();
-        this.scale = 1;
-    }
-
-    public ObservableList<Transform> getPosition() {
-        return this.getTransforms();
-    }
-    public void AddTransform(Transform trans) {
-        this.getTransforms().add(trans);
+        this.scale=1;
+        this.coordinates= new Point3D(0,0,0);
+        this.H = new Point3D(0,0,1);
+        this.L = new Point3D(-1,0,0);
+        this.U = H.crossProduct(L);
     }
 
     public double getScale() {
@@ -36,9 +27,46 @@ public class TurtlePosition extends Cylinder {
         this.scale = scale;
     }
 
+    public Point3D getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates(Point3D coordinates) {
+        this.coordinates = coordinates;
+    }
+
+    public Point3D getH() {
+        return H;
+    }
+
+    public void setH(Point3D h) {
+        H = h;
+    }
+
+    public Point3D getL() {
+        return L;
+    }
+
+    public void setL(Point3D l) {
+        L = l;
+    }
+
+    public Point3D getU() {
+        return U;
+    }
+
+    public void setU(Point3D u) {
+        U = u;
+    }
+
     @Override
     public String toString() {
         return "TurtlePosition{" +
+                "scale=" + scale +
+                ", coordinates=" + coordinates +
+                ", H=" + H +
+                ", L=" + L +
+                ", U=" + U +
                 '}';
     }
 }

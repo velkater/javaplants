@@ -23,7 +23,7 @@
         <Menu mnemonicParsing="false" text="%menu.title.file">
           <items>
             <MenuItem mnemonicParsing="false" onAction="#novy" text="%menu.title.new" />
-            <MenuItem mnemonicParsing="false" onAction="#novacyl" text="%menu.title.open" />
+            <MenuItem mnemonicParsing="false" text="%menu.title.open" />
             <MenuItem mnemonicParsing="false" onAction="#hop" text="%menu.title.close" />
             <MenuItem mnemonicParsing="false" text="%menu.title.save" />
             <MenuItem mnemonicParsing="false" text="%menu.title.save.as" />
