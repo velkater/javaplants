@@ -12,7 +12,7 @@ public class Rule extends HBox{
     public Rule() {
         super();
         choice = new ChoiceBox();
-        choice.getItems().addAll('A', 'B','C');
+        choice.getItems().addAll('B', 'L','S', 'F');
         text = new TextField();
         text.setMinWidth(350);
         this.getChildren().add(choice);

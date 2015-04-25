@@ -1,15 +1,13 @@
 package algoplants;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.SequentialTransition;
-import javafx.animation.Timeline;
+
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.*;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -17,7 +15,7 @@ import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Box;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
-import javafx.util.Duration;
+
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -101,11 +99,6 @@ public class Controller {
         System.out.println("inicializovano");
     }
 
-    public void novy(ActionEvent actionEvent) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, "neimplementovano");
-        alert.showAndWait();
-    }
-
     public void hop(ActionEvent actionEvent) throws InterruptedException {
         treegroup.getChildren().clear();
 
@@ -185,26 +178,36 @@ public class Controller {
             }
         }
         System.out.println(hash.toString());
-        Substitution subs = new Substitution(hash,
-                Integer.parseInt(stepfield.getText()),
-                seedfield.getText());
-
-        String code = subs.getCode();
-        Turtle turtle = new Turtle(45, 50);
-        System.out.println(turtle);
-
-
-        System.out.println(code);
-
-        treegroup = turtle.read(code);
-        group.getChildren().add(treegroup);
-
-
-
+        String seedfieldtext;
+        int stepnumber;
+        if( !seedfield.getText().equals("") && !stepfield.getText().equals("") ) {
+            ProgressBar statusBar = new ProgressBar();
+            statusBar.setProgress(.5);
+            seedfieldtext = seedfield.getText();
+            stepnumber = Integer.parseInt(stepfield.getText());
+            Substitution subs = new Substitution(hash, stepnumber, seedfieldtext);
+            String code = subs.getCode();
+            Turtle turtle = new Turtle(45, 50);
+            System.out.println(turtle);
+            System.out.println(code);
+            treegroup = turtle.read(code);
+            group.getChildren().add(treegroup);
+        }
+        else
+        {
+            System.out.println("nastala chyba, neco nebylo vyplneno");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Néco nebylo vyplnéno");
+            alert.showAndWait();
+        }
     }
 
     public void plusButton(ActionEvent actionEvent) {
         Rule rule = new Rule();
         rulesbox.getChildren().add(rule);
+    }
+
+    public void helpfunction(ActionEvent actionEvent) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Algoplants -- for D0L plants \n POGR na FJFI \n 2014/2015");
+        alert.showAndWait();
     }
 }

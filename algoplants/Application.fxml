@@ -22,17 +22,14 @@
       <menus>
         <Menu mnemonicParsing="false" text="%menu.title.file">
           <items>
-            <MenuItem mnemonicParsing="false" onAction="#novy" text="%menu.title.new" />
             <MenuItem mnemonicParsing="false" text="%menu.title.open" />
             <MenuItem mnemonicParsing="false" onAction="#hop" text="%menu.title.close" />
-            <MenuItem mnemonicParsing="false" text="%menu.title.save" />
-            <MenuItem mnemonicParsing="false" text="%menu.title.save.as" />
             <MenuItem mnemonicParsing="false" onAction="#quit" text="%menu.title.quit" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="%menu.title.help">
           <items>
-            <MenuItem mnemonicParsing="false" text="%menu.title.about" />
+            <MenuItem mnemonicParsing="false" onAction="#helpfunction" text="%menu.title.about" />
           </items>
         </Menu>
       </menus>

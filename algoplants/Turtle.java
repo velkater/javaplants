@@ -62,10 +62,10 @@ public class Turtle {
                     gr.getChildren().add(leaf);
                     break;
                 case 'S':
-                    //Stem stem = new Stem(5*this.getPosition().getScale(),
-                    //        this.getStep() * this.getPosition().getScale());
-                    //drawShape(stem);
-                    //gr.getChildren().add(stem);
+                    Stem stem = new Stem(5*this.getPosition().getScale(),
+                            this.getStep() * this.getPosition().getScale());
+                    drawShape(stem);
+                    gr.getChildren().add(stem);
                     break;
                 case 'F':
                     actpos = this.getPosition();
