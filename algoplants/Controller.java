@@ -108,17 +108,20 @@ public class Controller {
         Substitution subs = new Substitution(hash, 3, "B");
         //System.out.println(subs.getCode());
 
-        String code = subs.getCode();
-        //String code = "B[-B][+B]";
-        Turtle turtle = new Turtle(45, 50);
-        //System.out.println(turtle);
+        //String code = subs.getCode();
+        String code = "B";
+        Turtle turtle = new Turtle(45, 100);
 
-        //System.out.println(code);
+        Branch br = new Branch(20,100);
+        br.setTranslateY(-160);
+        Rotate rot = new Rotate(20, 0, 0, 0, Rotate.X_AXIS);
+        Rotate rot2 = new Rotate(60, 0, 0, 0, Rotate.Z_AXIS);
+        br.getTransforms().addAll(rot2, rot);
 
-        //group.getChildren().add(treegroup);
+
         treegroup = turtle.read(code);
         group.getChildren().add(treegroup);
-
+        group.getChildren().add(br);
 
         /*int i = 10;
         for(Node node:treegroup.getChildren())
@@ -187,7 +190,7 @@ public class Controller {
             stepnumber = Integer.parseInt(stepfield.getText());
             Substitution subs = new Substitution(hash, stepnumber, seedfieldtext);
             String code = subs.getCode();
-            Turtle turtle = new Turtle(45, 50);
+            Turtle turtle = new Turtle(45, 100);
             System.out.println(turtle);
             System.out.println(code);
             treegroup = turtle.read(code);

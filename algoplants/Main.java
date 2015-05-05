@@ -28,6 +28,10 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
 
+        double x = 0;
+        double z = 1;
+        System.out.println(Math.toDegrees(Math.atan2(z,x)));
+
         /*Point3D point = new Point3D(0,0,1);
         System.out.println(point.toString());
         Rotate rot =  new Rotate(90,0,0,0, Rotate.X_AXIS);

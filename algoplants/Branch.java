@@ -17,7 +17,7 @@ public class Branch extends Cylinder{
     public Branch(double radius, double height) {
         super(radius, height);
         PhongMaterial material = new PhongMaterial();
-        material.setBumpMap(new Image("texture_wood2.jpg"));
+        material.setBumpMap(new Image("testovaci.jpg"));
         material.setDiffuseColor(Color.web("D2BA6C"));
         this.setMaterial(material);
     }
