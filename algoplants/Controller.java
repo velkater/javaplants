@@ -106,22 +106,15 @@ public class Controller {
         hash.put('B', "B[+B]B[-B]B");
         //System.out.println(hash);
         Substitution subs = new Substitution(hash, 3, "B");
-        //System.out.println(subs.getCode());
+        System.out.println(subs.getCode());
 
-        //String code = subs.getCode();
-        String code = "B";
-        Turtle turtle = new Turtle(45, 100);
-
-        Branch br = new Branch(20,100);
-        br.setTranslateY(-160);
-        Rotate rot = new Rotate(20, 0, 0, 0, Rotate.X_AXIS);
-        Rotate rot2 = new Rotate(60, 0, 0, 0, Rotate.Z_AXIS);
-        br.getTransforms().addAll(rot2, rot);
+        String code = subs.getCode();
+        //String code = "B[+B]B[-B]B";
+        Turtle turtle = new Turtle(45, 50);
 
 
         treegroup = turtle.read(code);
         group.getChildren().add(treegroup);
-        group.getChildren().add(br);
 
         /*int i = 10;
         for(Node node:treegroup.getChildren())

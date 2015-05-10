@@ -32,17 +32,19 @@ public class Main extends Application {
         double z = 1;
         System.out.println(Math.toDegrees(Math.atan2(z,x)));
 
-        /*Point3D point = new Point3D(0,0,1);
+        Point3D point = new Point3D(1,0,0);
+        Point3D axis = new Point3D(0,-1,0);
         System.out.println(point.toString());
-        Rotate rot =  new Rotate(90,0,0,0, Rotate.X_AXIS);
+        Rotate rot =  new Rotate(90, axis);
 
         point = rot.transform(point);
         System.out.println(point);
 
-        Rotate rotz =  new Rotate(-90,0,0,0, Rotate.Z_AXIS);
+        /*Rotate rotz =  new Rotate(-90,0,0,0, Rotate.Z_AXIS);
 
         point = rotz.transform(point);
-        System.out.println(point);*/
+        System.out.println(point);
+        */
 
     }
 }
