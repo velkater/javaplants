@@ -21,9 +21,9 @@ public class Turtle {
 
     private void drawShape(Shape3D shape)
     {
-        //System.out.println("U =" + this.getPosition().getU());
-        //System.out.println("L =" + this.getPosition().getL());
-        //System.out.println("H =" + this.getPosition().getH());
+        System.out.println("U =" + this.getPosition().getU());
+        System.out.println("L =" + this.getPosition().getL());
+        System.out.println("H =" + this.getPosition().getH());
         Point3D coord = this.getPosition().getCoordinates();
         //System.out.println("coord"+coord);
         shape.setTranslateY(coord.getY());
@@ -32,40 +32,66 @@ public class Turtle {
         double alpha1 = 0;
         if (this.getPosition().getU().getX() == 0)
         {
-            alpha1 = Math.signum(this.getPosition().getU().getZ()) * 90;
+            alpha1 = -Math.toRadians(Math.signum(this.getPosition().getU().getZ())*90);
         }
         else
         {
-            alpha1 = Math.toDegrees(Math.atan(this.getPosition().getU().getZ()/
-                    (-this.getPosition().getU().getX())));
+            alpha1 = Math.atan(this.getPosition().getU().getZ()/
+                    (this.getPosition().getU().getX()));
         }
 
-        //System.out.println("alpha1 =" + alpha1);
-        Rotate roty = new Rotate(alpha1, 0, 0, 0, Rotate.Y_AXIS);
+        System.out.println("alpha1 =" + Math.toDegrees(alpha1));
+        Rotate roty = new Rotate(Math.toDegrees(alpha1), 0, 0, 0, Rotate.Y_AXIS);
         shape.getTransforms().add(roty);
 
         double xu = this.getPosition().getU().getX();
         double zu = this.getPosition().getU().getZ();
-        double xu2 = xu * Math.cos(alpha1) - zu * Math.sin(alpha1);
-        double zu2 = xu * Math.sin(alpha1) + zu * Math.cos(alpha1);
-        double alpha2 = Math.signum(xu2) *
-                (90 - Math.toDegrees(Math.asin( -this.getPosition().getU().getY())));
-
-        //System.out.println("alpha2 =" + alpha2);
-        Rotate rotz = new Rotate(alpha2, 0,0,0, Rotate.Z_AXIS);
-        shape.getTransforms().add(rotz);
+        double xu2 = xu * Math.cos(-alpha1) - zu * Math.sin(-alpha1);
+        double zu2 = xu * Math.sin(-alpha1) + zu * Math.cos(-alpha1);
         double xl = this.getPosition().getL().getX();
         double zl = this.getPosition().getL().getZ();
-        double xl2 = xl * Math.cos(alpha1) - zl * Math.sin(alpha1);
-        double zl2 = xl * Math.sin(alpha1) + zl * Math.cos(alpha1);
-        double yl2 = this.getPosition().getL().getY();
-        double xl3 = xl2 * Math.cos(alpha2) - yl2 * Math.sin(alpha2);
+        double yl = this.getPosition().getL().getY();
+        double xl2 = xl * Math.cos(-alpha1) - zl * Math.sin(-alpha1);
+        double zl2 = xl * Math.sin(-alpha1) + zl * Math.cos(-alpha1);
+        double yl2 = yl;
+        System.out.println("xu1 =" + xu2);
+        System.out.println("zu1 =" + zu2);
+        System.out.println("xl1 =" + xl2);
+        System.out.println("zl1 =" + zl2);
 
-        double alpha3 = -Math.signum(zl2) * (90 - Math.toDegrees(Math.asin(-xl3)));
+        double alpha2 = Math.signum(xu2) *
+                (Math.acos( Math.sqrt(xu * xu + zu * zu)));
+        System.out.println(Math.sqrt(xu * xu + zu * zu));
+        System.out.println("alpha2 =" + Math.toDegrees(alpha2));
+        Rotate rotz = new Rotate(Math.toDegrees(alpha2), 0,0,0, Rotate.Z_AXIS);
+        //shape.getTransforms().add(rotz);
 
-        //System.out.println("alpha3 =" + alpha3);
-        Rotate roty2 = new Rotate(alpha3 ,0,0,0,Rotate.Y_AXIS);
-        shape.getTransforms().add(roty2);
+
+        double yl3 = xl2 * Math.cos(-alpha2) - yl2 * Math.sin(-alpha2);
+        double xl3 = xl2 * Math.sin(-alpha2) + yl2 * Math.cos(-alpha2);
+        double zl3 = zl2;
+        System.out.println("xl3 =" + xl3);
+        System.out.println("yl3 =" + yl3);
+        System.out.println("zl3 =" + zl3);
+
+        double alpha3 = 0;
+        if (Math.abs(xl3) < 0.000
+        {
+            if (Math.abs(zl3) > 0.0001)
+            {
+                alpha3 = -Math.toRadians(Math.signum(zl3)*90);
+            }
+        }
+        else
+        {
+            alpha3 = Math.atan(zl3/xl3);
+        }
+
+        //double alpha3 = Math.signum(zl2) * (Math.PI/2 - Math.asin(Math.abs(xl3)));
+
+        System.out.println("alpha3 =" + Math.toDegrees(alpha3));
+        Rotate roty2 = new Rotate(Math.toDegrees(alpha3) ,0,0,0,Rotate.Y_AXIS);
+        //shape.getTransforms().add(roty2);
 
     }
 

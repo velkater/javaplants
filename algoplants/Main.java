@@ -28,7 +28,8 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
 
-        double x = 0;
+
+        /*double x = 0;
         double z = 1;
         System.out.println(Math.toDegrees(Math.atan2(z,x)));
 
@@ -38,7 +39,7 @@ public class Main extends Application {
         Rotate rot =  new Rotate(90, axis);
 
         point = rot.transform(point);
-        System.out.println(point);
+        System.out.println(point);*/
 
         /*Rotate rotz =  new Rotate(-90,0,0,0, Rotate.Z_AXIS);
 

@@ -53,7 +53,7 @@ public class Controller {
                 new Rotate(-30, Rotate.Y_AXIS),
                 new Rotate(10, Rotate.X_AXIS),
                 new Rotate(0, Rotate.Z_AXIS),
-                new Translate(0, -500, -1300));
+                new Translate(0, -200, -700));
         camera.setNearClip(0.1);
         camera.setFarClip(2000.0);
         camera.setFieldOfView(60);
@@ -108,8 +108,8 @@ public class Controller {
         Substitution subs = new Substitution(hash, 3, "B");
         System.out.println(subs.getCode());
 
-        String code = subs.getCode();
-        //String code = "B[+B]B[-B]B";
+        //String code = subs.getCode();
+        String code = "B&B";
         Turtle turtle = new Turtle(45, 50);
 
 
