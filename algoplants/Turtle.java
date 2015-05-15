@@ -4,7 +4,8 @@ import javafx.geometry.Point3D;
 import javafx.scene.Group;
 import javafx.scene.shape.Shape3D;
 import javafx.scene.transform.Rotate;
-import java.lang.Math;
+import javafx.scene.transform.Translate;
+
 import java.util.Stack;
 
 public class Turtle {
@@ -15,108 +16,48 @@ public class Turtle {
     private TurtlePosition position;
     private Stack<TurtlePosition> stack;
 
-    private Rotate rot;
-    private Rotate rotneg;
-
-
     private void drawShape(Shape3D shape)
     {
-        System.out.println("U =" + this.getPosition().getU());
-        System.out.println("L =" + this.getPosition().getL());
-        System.out.println("H =" + this.getPosition().getH());
-        Point3D coord = this.getPosition().getCoordinates();
-        //System.out.println("coord"+coord);
-        shape.setTranslateY(coord.getY());
-        shape.setTranslateX(coord.getX());
-        shape.setTranslateZ(coord.getZ());
-        double alpha1 = 0;
-        if (this.getPosition().getU().getX() == 0)
-        {
-            alpha1 = -Math.toRadians(Math.signum(this.getPosition().getU().getZ())*90);
-        }
-        else
-        {
-            alpha1 = Math.atan(this.getPosition().getU().getZ()/
-                    (this.getPosition().getU().getX()));
-        }
-
-        System.out.println("alpha1 =" + Math.toDegrees(alpha1));
-        Rotate roty = new Rotate(Math.toDegrees(alpha1), 0, 0, 0, Rotate.Y_AXIS);
-        shape.getTransforms().add(roty);
-
-        double xu = this.getPosition().getU().getX();
-        double zu = this.getPosition().getU().getZ();
-        double xu2 = xu * Math.cos(-alpha1) - zu * Math.sin(-alpha1);
-        double zu2 = xu * Math.sin(-alpha1) + zu * Math.cos(-alpha1);
-        double xl = this.getPosition().getL().getX();
-        double zl = this.getPosition().getL().getZ();
-        double yl = this.getPosition().getL().getY();
-        double xl2 = xl * Math.cos(-alpha1) - zl * Math.sin(-alpha1);
-        double zl2 = xl * Math.sin(-alpha1) + zl * Math.cos(-alpha1);
-        double yl2 = yl;
-        System.out.println("xu1 =" + xu2);
-        System.out.println("zu1 =" + zu2);
-        System.out.println("xl1 =" + xl2);
-        System.out.println("zl1 =" + zl2);
-
-        double alpha2 = Math.signum(xu2) *
-                (Math.acos( Math.sqrt(xu * xu + zu * zu)));
-        System.out.println(Math.sqrt(xu * xu + zu * zu));
-        System.out.println("alpha2 =" + Math.toDegrees(alpha2));
-        Rotate rotz = new Rotate(Math.toDegrees(alpha2), 0,0,0, Rotate.Z_AXIS);
-        //shape.getTransforms().add(rotz);
-
-
-        double yl3 = xl2 * Math.cos(-alpha2) - yl2 * Math.sin(-alpha2);
-        double xl3 = xl2 * Math.sin(-alpha2) + yl2 * Math.cos(-alpha2);
-        double zl3 = zl2;
-        System.out.println("xl3 =" + xl3);
-        System.out.println("yl3 =" + yl3);
-        System.out.println("zl3 =" + zl3);
-
-        double alpha3 = 0;
-        if (Math.abs(xl3) < 0.000
-        {
-            if (Math.abs(zl3) > 0.0001)
-            {
-                alpha3 = -Math.toRadians(Math.signum(zl3)*90);
-            }
-        }
-        else
-        {
-            alpha3 = Math.atan(zl3/xl3);
-        }
-
-        //double alpha3 = Math.signum(zl2) * (Math.PI/2 - Math.asin(Math.abs(xl3)));
-
-        System.out.println("alpha3 =" + Math.toDegrees(alpha3));
-        Rotate roty2 = new Rotate(Math.toDegrees(alpha3) ,0,0,0,Rotate.Y_AXIS);
-        //shape.getTransforms().add(roty2);
-
+        //shape.setVisible(false);
+        shape.getTransforms().addAll(position.getPosition());
     }
 
     public Group read(String code)
     {
         Group gr = new Group();
-        TurtlePosition actpos = this.getPosition();
         for(int i = 0, n = code.length() ; i < n ; i++) {
+            double rn = Math.random();
+            System.out.println(rn);
+            double sign = 1;
+            if (rn < 0.5)
+                sign = -1;
+            
             char c = code.charAt(i);
             switch (c) {
                 case 'B':
-                    actpos =this.getPosition();
-                    actpos.setCoordinates(actpos.getCoordinates().add(
-                            actpos.getU().multiply(this.step / 2)));
+                    this.getPosition().AddTransform(
+                            new Translate(0,(-step/2)*this.getPosition().getScale(),0));
                     Branch branch = new Branch(5*this.getPosition().getScale(),
                             this.getStep() * this.getPosition().getScale());
                     drawShape(branch);
                     gr.getChildren().add(branch);
-                    actpos.setCoordinates(actpos.getCoordinates().add(
-                            actpos.getU().multiply(this.step/2)));
+                    this.getPosition().AddTransform(
+                            new Translate(0, (-step / 2) * this.getPosition().getScale(), 0));
                     break;
                 case 'L':
-                    Leaf leaf = new Leaf(50,50);
+                    Leaf leaf = new Leaf(60,60);
                     drawShape(leaf);
+                    leaf.getTransforms().addAll(
+                            new Rotate(sign*this.getDelta()/2, 0,0,0, Rotate.Z_AXIS),
+                            new Translate(0,-60,0)
+                    );
                     gr.getChildren().add(leaf);
+                    break;
+                case 'l':
+                    Leaf sleaf = new Leaf(15,15);
+                    drawShape(sleaf);
+                    //sleaf.getTransforms().add();
+                    gr.getChildren().add(sleaf);
                     break;
                 case 'S':
                     Stem stem = new Stem(5*this.getPosition().getScale(),
@@ -125,72 +66,48 @@ public class Turtle {
                     gr.getChildren().add(stem);
                     break;
                 case 'F':
-                    actpos = this.getPosition();
                     Flower flower = new Flower(7);
                     drawShape(flower);
                     gr.getChildren().add(flower);
                     break;
                 case 'g':
-                    //this.getPosition().setTranslateY(
-                    //        (-step / 2) * this.getPosition().getScale()
-                    //);
-                    /*this.getPosition().AddTransform(
-                            new Translate(0,(-step/2)*this.getPosition().getScale(),0));*/
+                    this.getPosition().AddTransform(
+                            new Translate(0,(-step/2)*this.getPosition().getScale(),0));
                     break;
                 case '+':
-                    //rotace doleva
-                    rotneg.setAxis(this.getPosition().getH());
-                    this.getPosition().setL(this.rotneg.transform(this.getPosition().getL()));
-                    this.getPosition().setU(this.rotneg.transform(this.getPosition().getU()));
-                    this.getPosition().setH(this.rotneg.transform(this.getPosition().getH()));
+                    //rotace doprava
+                    this.getPosition().AddTransform(
+                            new Rotate(-delta,0,0,0,Rotate.Z_AXIS));
                     break;
                 case '-':
-                    //rotace doprava
-                    rot.setAxis(this.getPosition().getH());
-                    this.getPosition().setL(this.rot.transform(this.getPosition().getL()));
-                    this.getPosition().setU(this.rot.transform(this.getPosition().getU()));
-                    this.getPosition().setH(this.rot.transform(this.getPosition().getH()));
+                    //rotace doleva
+                    this.getPosition().AddTransform(
+                            new Rotate(delta,0,0,0,Rotate.Z_AXIS));
                     break;
                 case '&':
                     //rotace dolu
-                    //this.getPosition().AddTransform(
-                    //        new Rotate(-delta,0,0,0,Rotate.X_AXIS));
-                    rot.setAxis(this.getPosition().getL());
-                    this.getPosition().setL(this.rot.transform(this.getPosition().getL()));
-                    this.getPosition().setU(this.rot.transform(this.getPosition().getU()));
-                    this.getPosition().setH(this.rot.transform(this.getPosition().getH()));
+                    this.getPosition().AddTransform(
+                            new Rotate(-delta,0,0,0,Rotate.X_AXIS));
                     break;
                 case '^':
                     //rotace nahoru
-                    //this.getPosition().AddTransform(
-                    //        new Rotate(delta,0,0,0,Rotate.X_AXIS));
-                    rotneg.setAxis(this.getPosition().getL());
-                    this.getPosition().setL(this.rotneg.transform(this.getPosition().getL()));
-                    this.getPosition().setU(this.rotneg.transform(this.getPosition().getU()));
-                    this.getPosition().setH(this.rotneg.transform(this.getPosition().getH()));
+                    this.getPosition().AddTransform(
+                            new Rotate(delta,0,0,0,Rotate.X_AXIS));
                     break;
                 case '\\':
                     //rotace roll doleva
-                    //this.getPosition().AddTransform(
-                    //        new Rotate(delta, 0, 0, 0, Rotate.Y_AXIS));
-                    rotneg.setAxis(this.getPosition().getU());
-                    this.getPosition().setL(this.rotneg.transform(this.getPosition().getL()));
-                    this.getPosition().setU(this.rotneg.transform(this.getPosition().getU()));
-                    this.getPosition().setH(this.rotneg.transform(this.getPosition().getH()));
+                    this.getPosition().AddTransform(
+                            new Rotate(delta, 0, 0, 0, Rotate.Y_AXIS));
                     break;
                 case '/':
                     //rotace roll doprava
-                    //this.getPosition().AddTransform(
-                    //        new Rotate(-delta, 0, 0, 0, Rotate.Y_AXIS));
-                    rot.setAxis(this.getPosition().getU());
-                    this.getPosition().setL(this.rot.transform(this.getPosition().getL()));
-                    this.getPosition().setU(this.rot.transform(this.getPosition().getU()));
-                    this.getPosition().setH(this.rot.transform(this.getPosition().getH()));
+                    this.getPosition().AddTransform(
+                            new Rotate(-delta, 0, 0, 0, Rotate.Y_AXIS));
                     break;
                 case '|':
                     //rotace o 180
-                    //this.getPosition().AddTransform(
-                    //        new Rotate(180,0,0,0,Rotate.Z_AXIS));
+                    this.getPosition().AddTransform(
+                            new Rotate(180,0,0,0,Rotate.Z_AXIS));
                     System.out.println("|");
                     break;
                 case '[':
@@ -203,7 +120,7 @@ public class Turtle {
                     break;
                 case '!':
                     //zmensi velikost
-                    //this.getPosition().setScale(this.getPosition().getScale()*0.8);
+                    this.getPosition().setScale(this.getPosition().getScale()*0.8);
                     break;
                 default:
                     System.out.println("chybny znak");
@@ -214,17 +131,15 @@ public class Turtle {
     }
 
     public void savePosition() {
-        TurtlePosition actpos = this.getPosition();
         TurtlePosition savedPos = new TurtlePosition();
-        savedPos.setScale(actpos.getScale());
-        savedPos.setCoordinates(actpos.getCoordinates());
-        savedPos.setH(actpos.getH());
-        savedPos.setL(actpos.getL());
-        savedPos.setU(actpos.getU());
+        savedPos.getTransforms().addAll(position.getPosition());
+        savedPos.setScale(position.getScale());
         stack.push(savedPos);
+        //System.out.println(stack);
     }
 
     public void goToLast() {
+        //System.out.println(stack.peek());
         this.setPosition(stack.pop());
     }
 
@@ -233,8 +148,6 @@ public class Turtle {
         this.step = step;
         this.position = new TurtlePosition();
         this.stack = new Stack<TurtlePosition>();
-        this.rot = new Rotate(delta);
-        this.rotneg = new Rotate(-delta);
     }
 
     @Override

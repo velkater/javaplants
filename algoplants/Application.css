@@ -18,7 +18,11 @@
 }
 
 #title {
-    -fx-text-fill: #6b82a0
+    -fx-text-fill: #0063a0
+}
+
+#pm {
+    -fx-text-fill: #0063a0
 }
 
 .settings {

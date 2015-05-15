@@ -34,6 +34,7 @@ public class Controller {
 
     private Group group;
     private Group treegroup;
+    private PerspectiveCamera camera;
 
     public Group getGroup() {
         return group;
@@ -48,12 +49,12 @@ public class Controller {
     @FXML
     protected void initialize() {
         this.rules = new Hashtable<>();
-        PerspectiveCamera camera = new PerspectiveCamera(true);
+        this.camera = new PerspectiveCamera(true);
         camera.getTransforms().addAll (
                 new Rotate(-30, Rotate.Y_AXIS),
                 new Rotate(10, Rotate.X_AXIS),
                 new Rotate(0, Rotate.Z_AXIS),
-                new Translate(0, -200, -700));
+                new Translate(0, -500, -1300));
         camera.setNearClip(0.1);
         camera.setFarClip(2000.0);
         camera.setFieldOfView(60);
@@ -109,7 +110,7 @@ public class Controller {
         System.out.println(subs.getCode());
 
         //String code = subs.getCode();
-        String code = "B&B";
+        String code = "BLBLBLBLBLBL";
         Turtle turtle = new Turtle(45, 50);
 
 
@@ -205,5 +206,30 @@ public class Controller {
     public void helpfunction(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION, "Algoplants -- for D0L plants \n POGR na FJFI \n 2014/2015");
         alert.showAndWait();
+    }
+
+    public void minusCam(ActionEvent actionEvent) {
+        double camy = this.camera.getTransforms().get(3).getTy();
+        double camz = this.camera.getTransforms().get(3).getTz();
+        System.out.println("try"+ camy);
+        System.out.println("try"+ camz);
+        if( this.camera.getTransforms().get(3).getTy() > -500 && this.camera.getTransforms().get(3).getTz() > -1300)
+        {
+            this.camera.getTransforms().add(new Translate(0, camy-40, camz-100 ));
+            this.camera.getTransforms().remove(3);
+        }
+    }
+
+    public void plusCam(ActionEvent actionEvent) {
+        double camy = this.camera.getTransforms().get(3).getTy();
+        double camz = this.camera.getTransforms().get(3).getTz();
+        System.out.println("try"+ camy);
+        System.out.println("try"+ camz);
+        if( this.camera.getTransforms().get(3).getTy() < -100 && this.camera.getTransforms().get(3).getTz() < -300)
+        {
+            this.camera.getTransforms().add(new Translate(0, camy+40, camz+100 ));
+            this.camera.getTransforms().remove(3);
+
+        }
     }
 }

@@ -36,9 +36,9 @@
     </MenuBar>
     <SplitPane dividerPositions="0.2505567928730512" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <items>
-            <SplitPane orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+            <SplitPane maxWidth="350.0" minWidth="250.0" orientation="VERTICAL" prefWidth="250.0">
               <items>
-                  <VBox minWidth="300.0">
+                  <VBox>
                      <children>
                   <Label id="title" alignment="TOP_LEFT" prefWidth="-1.0" style="&#10;" text="%label.text.master" textAlignment="CENTER" wrapText="false">
                     <font>
@@ -118,6 +118,8 @@
                            <padding>
                               <Insets left="10.0" top="10.0" />
                            </padding></Label>
+                        <Button id="pm" alignment="TOP_CENTER" layoutX="14.0" layoutY="38.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#plusCam" prefHeight="25.0" prefWidth="32.0" text="+" />
+                        <Button id="pm" alignment="TOP_CENTER" layoutX="57.0" layoutY="38.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#minusCam" prefHeight="25.0" prefWidth="32.0" text="—" />
                 
               </children>
             </AnchorPane>

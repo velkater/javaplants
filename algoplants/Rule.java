@@ -14,7 +14,7 @@ public class Rule extends HBox{
         choice = new ChoiceBox();
         choice.getItems().addAll('B', 'L','S', 'F');
         text = new TextField();
-        text.setMinWidth(350);
+        text.setMinWidth(200);
         this.getChildren().add(choice);
         this.getChildren().add(text);
     }
