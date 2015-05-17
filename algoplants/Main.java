@@ -49,3 +49,13 @@ public class Main extends Application {
 
     }
 }
+
+/* Dobra subs
+
+B to B[+BSl]B[-BlS][^BlS]B[&BSl]
+S to B
+L to Lf
+f to F
+F to Ff
+l to F
+ */

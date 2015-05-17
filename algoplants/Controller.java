@@ -31,6 +31,7 @@ public class Controller {
     @FXML VBox rulesbox;
     @FXML TextField seedfield;
     @FXML TextField stepfield;
+    @FXML TextField anglefield;
 
     private Group group;
     private Group treegroup;
@@ -110,8 +111,8 @@ public class Controller {
         System.out.println(subs.getCode());
 
         //String code = subs.getCode();
-        String code = "BLBLBLBLBLBL";
-        Turtle turtle = new Turtle(45, 50);
+        String code = "SLBFSlBf";
+        Turtle turtle = new Turtle(35, 50);
 
 
         treegroup = turtle.read(code);
@@ -157,11 +158,15 @@ public class Controller {
         for (Object rule: list)
         {
             if(((Rule) rule).getKey() != null
-                    && ((Rule) rule).getCode()!= null)
+                    && !((Rule) rule).getCode().equals(""))
             {
-                if(hash.contains(((Rule) rule).getKey()))
+                //System.out.println(((Rule) rule).getKey());
+                //System.out.println(hash.containsKey(((Rule) rule).getKey()));
+                if(hash.containsKey(((Rule) rule).getKey()))
                 {
                     System.out.println("Chyba");
+                    hash.put(((Rule) rule).getKey()
+                            ,((Rule) rule).getCode());
                 }
                 else
                 {
@@ -171,20 +176,25 @@ public class Controller {
             }
             else
             {
-                System.out.println("nejaky null");
+                System.out.println("nastala chyba, neco spatne vyplneno");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Néco nebylo vyplnéno");
+                alert.showAndWait();
             }
         }
         System.out.println(hash.toString());
         String seedfieldtext;
         int stepnumber;
-        if( !seedfield.getText().equals("") && !stepfield.getText().equals("") ) {
+        int angle;
+        if( !seedfield.getText().equals("") && !stepfield.getText().equals("")
+                && !anglefield.getText().equals("")) {
             ProgressBar statusBar = new ProgressBar();
             statusBar.setProgress(.5);
             seedfieldtext = seedfield.getText();
             stepnumber = Integer.parseInt(stepfield.getText());
+            angle = Integer.parseInt(anglefield.getText());
             Substitution subs = new Substitution(hash, stepnumber, seedfieldtext);
             String code = subs.getCode();
-            Turtle turtle = new Turtle(45, 100);
+            Turtle turtle = new Turtle(angle, 50);
             System.out.println(turtle);
             System.out.println(code);
             treegroup = turtle.read(code);
@@ -211,9 +221,9 @@ public class Controller {
     public void minusCam(ActionEvent actionEvent) {
         double camy = this.camera.getTransforms().get(3).getTy();
         double camz = this.camera.getTransforms().get(3).getTz();
-        System.out.println("try"+ camy);
-        System.out.println("try"+ camz);
-        if( this.camera.getTransforms().get(3).getTy() > -500 && this.camera.getTransforms().get(3).getTz() > -1300)
+        //System.out.println("try"+ camy);
+        //System.out.println("try"+ camz);
+        if( this.camera.getTransforms().get(3).getTy() > -700 && this.camera.getTransforms().get(3).getTz() > -1800)
         {
             this.camera.getTransforms().add(new Translate(0, camy-40, camz-100 ));
             this.camera.getTransforms().remove(3);
@@ -223,8 +233,8 @@ public class Controller {
     public void plusCam(ActionEvent actionEvent) {
         double camy = this.camera.getTransforms().get(3).getTy();
         double camz = this.camera.getTransforms().get(3).getTz();
-        System.out.println("try"+ camy);
-        System.out.println("try"+ camz);
+        //System.out.println("try"+ camy);
+        //System.out.println("try"+ camz);
         if( this.camera.getTransforms().get(3).getTy() < -100 && this.camera.getTransforms().get(3).getTz() < -300)
         {
             this.camera.getTransforms().add(new Translate(0, camy+40, camz+100 ));

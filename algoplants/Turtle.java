@@ -27,11 +27,10 @@ public class Turtle {
         Group gr = new Group();
         for(int i = 0, n = code.length() ; i < n ; i++) {
             double rn = Math.random();
-            System.out.println(rn);
             double sign = 1;
             if (rn < 0.5)
                 sign = -1;
-            
+
             char c = code.charAt(i);
             switch (c) {
                 case 'B':
@@ -54,21 +53,39 @@ public class Turtle {
                     gr.getChildren().add(leaf);
                     break;
                 case 'l':
-                    Leaf sleaf = new Leaf(15,15);
+                    Leaf sleaf = new Leaf(25,25);
                     drawShape(sleaf);
-                    //sleaf.getTransforms().add();
+                    sleaf.getTransforms().addAll(
+                            new Rotate(sign*this.getDelta(), 0,0,0, Rotate.Z_AXIS),
+                            new Translate(0,-15,0)
+                    );
                     gr.getChildren().add(sleaf);
                     break;
                 case 'S':
+                    this.getPosition().AddTransform(
+                            new Translate(0,(-step/2)*this.getPosition().getScale(),0));
                     Stem stem = new Stem(5*this.getPosition().getScale(),
                             this.getStep() * this.getPosition().getScale());
                     drawShape(stem);
                     gr.getChildren().add(stem);
+                    this.getPosition().AddTransform(
+                            new Translate(0, (-step / 2) * this.getPosition().getScale(), 0));
                     break;
                 case 'F':
-                    Flower flower = new Flower(7);
+                    Flower flower = new Flower(20);
                     drawShape(flower);
+                    flower.getTransforms().addAll(new Rotate(sign*this.getDelta(), 0,0,0, Rotate.Z_AXIS),
+                            new Translate(0,-15,0)
+                    );
                     gr.getChildren().add(flower);
+                    break;
+                case 'f':
+                    Flower sflower = new Flower(7);
+                    drawShape(sflower);
+                    sflower.getTransforms().addAll(new Rotate(sign*this.getDelta(), 0,0,0, Rotate.Z_AXIS),
+                            new Translate(0,-15,0)
+                    );
+                    gr.getChildren().add(sflower);
                     break;
                 case 'g':
                     this.getPosition().AddTransform(

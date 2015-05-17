@@ -60,16 +60,17 @@
                             <RowConstraints maxHeight="60.0" minHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
                             <RowConstraints maxHeight="60.0" minHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="60.0" minHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="60.0" minHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="254.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="237.0" minHeight="0.0" prefHeight="7.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="94.0" minHeight="0.0" prefHeight="43.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="60.0" minHeight="0.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="60.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <padding>
                               <Insets left="10.0" top="10.0" />
                            </padding>
                            <children>
-                              <Button id="drawbutton" alignment="CENTER" contentDisplay="CENTER" minWidth="70.0" mnemonicParsing="false" onAction="#drawButton" text="%draw" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+                              <Button id="drawbutton" alignment="CENTER" contentDisplay="CENTER" minWidth="70.0" mnemonicParsing="false" onAction="#drawButton" text="%draw" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
@@ -99,6 +100,12 @@
                                  </GridPane.margin>
                               </TextField>
                               <VBox fx:id="rulesbox" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                              <Label id="subtitle" text="%settings.angle" GridPane.rowIndex="6" />
+                              <TextField fx:id="anglefield" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                 <GridPane.margin>
+                                    <Insets right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
                            </children>
                         </GridPane>
                      </children>
