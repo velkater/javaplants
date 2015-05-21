@@ -2,6 +2,8 @@ package algoplants;
 
 import javafx.geometry.Point3D;
 import javafx.scene.Group;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Shape3D;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
@@ -85,6 +87,9 @@ public class Turtle {
                     sflower.getTransforms().addAll(new Rotate(sign*this.getDelta(), 0,0,0, Rotate.Z_AXIS),
                             new Translate(0,-15,0)
                     );
+                    PhongMaterial material = new PhongMaterial();
+                    material.setDiffuseColor(Color.YELLOW);
+                    sflower.setMaterial(material);
                     gr.getChildren().add(sflower);
                     break;
                 case 'g':
