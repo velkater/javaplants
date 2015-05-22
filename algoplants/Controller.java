@@ -7,7 +7,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.*;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -15,14 +14,9 @@ import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Box;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
-
-
-import java.awt.*;
-import java.util.ArrayList;
 import java.util.Hashtable;
 
 
-// bommry
 public class Controller {
     @FXML AnchorPane kanvas;
     @FXML SubScene subs;
@@ -67,8 +61,9 @@ public class Controller {
         subs.setCamera(camera);
         subs.setFill(Color.DEEPSKYBLUE);
 
-        System.out.println("buildAxes()");
-        final PhongMaterial redMaterial = new PhongMaterial();
+
+        // Osy x, y a z
+        /*final PhongMaterial redMaterial = new PhongMaterial();
         redMaterial.setDiffuseColor(Color.DARKRED);
         redMaterial.setSpecularColor(Color.RED);
 
@@ -80,71 +75,43 @@ public class Controller {
         blueMaterial.setDiffuseColor(Color.DARKBLUE);
         blueMaterial.setSpecularColor(Color.BLUE);
 
-        final Box xAxis = new Box(240.0, 1, 1);
-        final Box yAxis = new Box(1, 240.0, 1);
-        final Box zAxis = new Box(1, 1, 240.0);
+        final Box xAxis = new Box(500.0, 2, 2);
+        final Box yAxis = new Box(2, 500.0, 2);
+        final Box zAxis = new Box(2, 2, 500.0);
 
         xAxis.setMaterial(redMaterial);
         yAxis.setMaterial(greenMaterial);
         zAxis.setMaterial(blueMaterial);
+        group.getChildren().addAll(xAxis, yAxis, zAxis);*/
 
+
+        // Zem
         Box grass = new Box(3000, 3, 3000);
         PhongMaterial material = new PhongMaterial();
         material.setDiffuseColor(Color.SADDLEBROWN);
         grass.getTransforms().add(new Rotate(0, Rotate.X_AXIS));
         grass.getTransforms().add(new Translate(0,10,0));
         grass.setMaterial(material);
-
-
-        group.getChildren().addAll(xAxis, yAxis, zAxis, grass);
-
-        System.out.println("inicializovano");
+        group.getChildren().addAll(grass);
     }
 
-    public void hop(ActionEvent actionEvent) throws InterruptedException {
+    public void test(ActionEvent actionEvent) throws InterruptedException {
         treegroup.getChildren().clear();
 
         Hashtable<Character,String> hash = new Hashtable<>();
         hash.put('B', "B[+B]B[-B]B");
-        //System.out.println(hash);
         Substitution subs = new Substitution(hash, 3, "B");
         System.out.println(subs.getCode());
+        String code = subs.getCode();
 
-        //String code = subs.getCode();
-        String code = "SLBFSlBf";
+        // Kód za účelem testování
+        // String code = "SLBFSlBf";
+
         Turtle turtle = new Turtle(35, 50);
-
-
         treegroup = turtle.read(code);
         group.getChildren().add(treegroup);
-
-        /*int i = 10;
-        for(Node node:treegroup.getChildren())
-        {
-            playnext(node, i);
-            i = i+10;
-        }*/
         System.gc();
-        //Leaf leaf= new Leaf(100,100);
-        //group.getChildren().add(leaf);
     }
-    /*private void playnext(Node node, int duration)
-    {
-        SequentialTransition seq;
-        seq = makeAnimation(node);
-        seq.setDelay(Duration.millis(duration));
-        seq.delayProperty();
-        seq.play();
-    }
-    public SequentialTransition makeAnimation(Node node) {
-        Timeline grow = new Timeline();
-        KeyValue key1 = new KeyValue(node.visibleProperty(),true);
-        KeyFrame keyf = new KeyFrame(Duration.millis(10),key1);
-        grow.getKeyFrames().add(keyf);
-        SequentialTransition sequence = new SequentialTransition(grow);
-
-        return sequence;
-    }*/
 
     public void quit(ActionEvent actionEvent) {
         Platform.exit();
@@ -160,8 +127,6 @@ public class Controller {
             if(((Rule) rule).getKey() != null
                     && !((Rule) rule).getCode().equals(""))
             {
-                //System.out.println(((Rule) rule).getKey());
-                //System.out.println(hash.containsKey(((Rule) rule).getKey()));
                 if(hash.containsKey(((Rule) rule).getKey()))
                 {
                     System.out.println("Chyba");
@@ -187,8 +152,6 @@ public class Controller {
         int angle;
         if( !seedfield.getText().equals("") && !stepfield.getText().equals("")
                 && !anglefield.getText().equals("")) {
-            ProgressBar statusBar = new ProgressBar();
-            statusBar.setProgress(.5);
             seedfieldtext = seedfield.getText();
             stepnumber = Integer.parseInt(stepfield.getText());
             angle = Integer.parseInt(anglefield.getText());
@@ -214,15 +177,15 @@ public class Controller {
     }
 
     public void helpfunction(ActionEvent actionEvent) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Algoplants -- for D0L plants \n POGR na FJFI \n 2014/2015");
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Algoplants -- for D0L plants \n FJFI \n 2014/2015");
         alert.showAndWait();
     }
 
+    // Pohyb kamery
+    // Dozadu
     public void minusCam(ActionEvent actionEvent) {
         double camy = this.camera.getTransforms().get(3).getTy();
         double camz = this.camera.getTransforms().get(3).getTz();
-        //System.out.println("try"+ camy);
-        //System.out.println("try"+ camz);
         if( this.camera.getTransforms().get(3).getTy() > -700 && this.camera.getTransforms().get(3).getTz() > -1800)
         {
             this.camera.getTransforms().add(new Translate(0, camy-40, camz-100 ));
@@ -230,11 +193,10 @@ public class Controller {
         }
     }
 
+    // Dopředu
     public void plusCam(ActionEvent actionEvent) {
         double camy = this.camera.getTransforms().get(3).getTy();
         double camz = this.camera.getTransforms().get(3).getTz();
-        //System.out.println("try"+ camy);
-        //System.out.println("try"+ camz);
         if( this.camera.getTransforms().get(3).getTy() < -100 && this.camera.getTransforms().get(3).getTz() < -300)
         {
             this.camera.getTransforms().add(new Translate(0, camy+40, camz+100 ));

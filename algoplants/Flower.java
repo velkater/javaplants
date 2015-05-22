@@ -6,13 +6,13 @@ import javafx.scene.shape.Sphere;
 
 public class Flower extends Sphere {
     public Flower() {
-        this(20);
+        this(20,Color.RED);
     }
 
-    public Flower(double radius) {
+    public Flower(double radius, Color color) {
         super(radius);
         PhongMaterial material = new PhongMaterial();
-        material.setDiffuseColor(Color.RED);
+        material.setDiffuseColor(color);
         this.setMaterial(material);
     }
 }

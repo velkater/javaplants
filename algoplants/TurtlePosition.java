@@ -1,16 +1,9 @@
 package algoplants;
 
 
-import com.sun.javafx.collections.ObservableListWrapper;
-import javafx.beans.property.SimpleListProperty;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableListBase;
 import javafx.scene.shape.Cylinder;
 import javafx.scene.transform.Transform;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
 
 
 public class TurtlePosition extends Cylinder {

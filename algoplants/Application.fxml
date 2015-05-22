@@ -23,7 +23,7 @@
         <Menu mnemonicParsing="false" text="%menu.title.file">
           <items>
             <MenuItem mnemonicParsing="false" text="%menu.title.open" />
-            <MenuItem mnemonicParsing="false" onAction="#hop" text="%menu.title.close" />
+            <MenuItem mnemonicParsing="false" onAction="#test" text="%menu.title.close" />
             <MenuItem mnemonicParsing="false" onAction="#quit" text="%menu.title.quit" />
           </items>
         </Menu>
@@ -57,14 +57,14 @@
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                           </columnConstraints>
                           <rowConstraints>
-                            <RowConstraints maxHeight="60.0" minHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
-                            <RowConstraints maxHeight="60.0" minHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="254.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="237.0" minHeight="0.0" prefHeight="7.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="94.0" minHeight="0.0" prefHeight="43.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="60.0" minHeight="0.0" prefHeight="42.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="60.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="7.0" minHeight="7.0" prefHeight="7.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="7.0" minHeight="7.0" prefHeight="7.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="42.0" minHeight="42.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="42.0" minHeight="42.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <padding>
                               <Insets left="10.0" top="10.0" />
@@ -75,7 +75,7 @@
                                     <Insets />
                                  </opaqueInsets>
                                  <GridPane.margin>
-                                    <Insets right="10.0" />
+                                    <Insets bottom="5.0" right="10.0" />
                                  </GridPane.margin>
                               </Button>
                               <Label id="subtitle" text="Seed" />

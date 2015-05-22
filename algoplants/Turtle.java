@@ -1,9 +1,7 @@
 package algoplants;
 
-import javafx.geometry.Point3D;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Shape3D;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
@@ -20,7 +18,6 @@ public class Turtle {
 
     private void drawShape(Shape3D shape)
     {
-        //shape.setVisible(false);
         shape.getTransforms().addAll(position.getPosition());
     }
 
@@ -74,7 +71,7 @@ public class Turtle {
                             new Translate(0, (-step / 2) * this.getPosition().getScale(), 0));
                     break;
                 case 'F':
-                    Flower flower = new Flower(20);
+                    Flower flower = new Flower(20, Color.RED);
                     drawShape(flower);
                     flower.getTransforms().addAll(new Rotate(sign*this.getDelta(), 0,0,0, Rotate.Z_AXIS),
                             new Translate(0,-15,0)
@@ -82,14 +79,11 @@ public class Turtle {
                     gr.getChildren().add(flower);
                     break;
                 case 'f':
-                    Flower sflower = new Flower(7);
+                    Flower sflower = new Flower(7, Color.YELLOW);
                     drawShape(sflower);
                     sflower.getTransforms().addAll(new Rotate(sign*this.getDelta(), 0,0,0, Rotate.Z_AXIS),
                             new Translate(0,-15,0)
                     );
-                    PhongMaterial material = new PhongMaterial();
-                    material.setDiffuseColor(Color.YELLOW);
-                    sflower.setMaterial(material);
                     gr.getChildren().add(sflower);
                     break;
                 case 'g':
@@ -117,12 +111,12 @@ public class Turtle {
                             new Rotate(delta,0,0,0,Rotate.X_AXIS));
                     break;
                 case '\\':
-                    //rotace roll doleva
+                    //rotace kolem svojí osy doleva
                     this.getPosition().AddTransform(
                             new Rotate(delta, 0, 0, 0, Rotate.Y_AXIS));
                     break;
                 case '/':
-                    //rotace roll doprava
+                    //rotace kolem svojí osy doprava
                     this.getPosition().AddTransform(
                             new Rotate(-delta, 0, 0, 0, Rotate.Y_AXIS));
                     break;
@@ -130,7 +124,6 @@ public class Turtle {
                     //rotace o 180
                     this.getPosition().AddTransform(
                             new Rotate(180,0,0,0,Rotate.Z_AXIS));
-                    System.out.println("|");
                     break;
                 case '[':
                     //zapamatuje si pozici v zasobniku
@@ -157,7 +150,6 @@ public class Turtle {
         savedPos.getTransforms().addAll(position.getPosition());
         savedPos.setScale(position.getScale());
         stack.push(savedPos);
-        //System.out.println(stack);
     }
 
     public void goToLast() {
