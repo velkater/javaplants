@@ -26,10 +26,46 @@ public class Main extends Application {
 
 /* Dobré substituce
 
+seed:B
 B to B[+BSl]B[-BlS][^BlS]B[&BSl]
 S to B
 L to Lf
 f to F
 F to Ff
 l to F
+
+seed:S
+B to B[-BlfS][+BlfS]B
+S to B
+L to Lf
+f to F
+F to FlF nebo Flf
+l to L
+
+seed:S
+B to B[-BSlf][+BSlf][&BSlf]
+S to B
+L to Lf
+f to F
+F to FlF nebo Flf
+l to L
+
+seed:S
+B to B[-/BlfSl]B[+\BlfSl]Bl
+S toB
+L to Lf
+f to F
+F to Flf
+l to ll
+
+seed:S
+B to B[+BL[-Bl]][-BL]
+S to B
+L to ^L&L&L^
+F to F
+l to LF
+
+seed: S
+S to S[-S[+Sf]]S[+S[-Sf]]S
+f to f nebo F
  */

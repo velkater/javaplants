@@ -53,9 +53,10 @@ public class Turtle {
                     break;
                 case 'L':
                     /* velký list */
-                    Leaf leaf = new Leaf(60,60);
+                    Leaf leaf = new Leaf(50,50);
                     drawShape(leaf);
                     leaf.getTransforms().addAll(
+                            new Rotate(sign*this.getDelta()/5, 0,0,0, Rotate.Y_AXIS),
                             new Rotate(sign*this.getDelta()/2, 0,0,0, Rotate.Z_AXIS),
                             new Translate(0,-60,0)
                     );

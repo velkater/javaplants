@@ -180,7 +180,7 @@ public class Controller {
             /* Vytvoření želvy */
             Turtle turtle = new Turtle(angle, 50);
             //System.out.println(turtle);
-            System.out.println(code);
+            //System.out.println(code);
             /* Předání kódu želvě a získání rostliny */
             treegroup = turtle.read(code);
             /* Přidání rostliny na scénu */
