@@ -1,11 +1,10 @@
 package algoplants;
 
-import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Cylinder;
-import javafx.scene.transform.Translate;
 
+/* Třída na stěbla nebo mladé větve */
 public class Stem extends Cylinder {
 
     public Stem() {

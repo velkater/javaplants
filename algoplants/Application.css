@@ -16,15 +16,17 @@
     -fx-background-insets: 0, 0;
     -fx-padding: 0;
 }
-
+/* Nastavení barvy textu na nápisech */
 #title {
     -fx-text-fill: #0063a0
 }
 
+/* Nastavení barvy textu na tlačítkách plus a minud */
 #pm {
     -fx-text-fill: #0063a0
 }
 
+/* Nastavení barvy textu na pravidla, úhel atd. */
 .settings {
     -fx-text-fill: #6b82a0
 }

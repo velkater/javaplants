@@ -16,19 +16,24 @@ import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
 import java.util.Hashtable;
 
-
+/* Odtud se kontroluje vše, co se děje v uživatelském rozhraní */
 public class Controller {
-    @FXML AnchorPane kanvas;
+    /* 3D scéna (subscéna) */
     @FXML SubScene subs;
-    @FXML AnchorPane reg;
-    @FXML GridPane gridpane;
+    /* VBox do kterého se přidávají jenotlivá pravidla*/
     @FXML VBox rulesbox;
+    /* Políčko se seedem */
     @FXML TextField seedfield;
+    /* Políčko s počtem kroků v substituci*/
     @FXML TextField stepfield;
+    /* Políčko s úhlem želvy */
     @FXML TextField anglefield;
 
+    /* Hlavní skupina s počátečním nastavením subscény (pozadí, zemí, případně osy) */
     private Group group;
+    /* Skupina do které se přidávají jednotlivé části vzniklé rostiny*/
     private Group treegroup;
+    /* Kamera */
     private PerspectiveCamera camera;
 
     public Group getGroup() {
@@ -43,8 +48,14 @@ public class Controller {
 
     @FXML
     protected void initialize() {
+        /* Počáteční nastavení pravidel a kamery */
         this.rules = new Hashtable<>();
+        /* Pro 3D má být podle dokumentace fixedEyeAtCameraZero na true */
         this.camera = new PerspectiveCamera(true);
+        /* umístění kamery -- automaticky je v centru scény
+        * kamera rotuje ve své soustavě, na začátku je umístěna v počátku, ale počátek soustavy se po translacícj
+        * nepohybuje spolu s ní.
+        */
         camera.getTransforms().addAll (
                 new Rotate(-30, Rotate.Y_AXIS),
                 new Rotate(10, Rotate.X_AXIS),
@@ -56,13 +67,14 @@ public class Controller {
 
         this.treegroup = new Group();
         this.group = new Group();
+        /* Subscéna potřebuje hlavní skupinu(root), kterou zobrazí a do které se pak přidávají další 3D objekty \ skupiny */
         subs.setRoot(group);
 
         subs.setCamera(camera);
         subs.setFill(Color.DEEPSKYBLUE);
 
 
-        // Osy x, y a z
+        /*  Osy x, y a z */
         /*final PhongMaterial redMaterial = new PhongMaterial();
         redMaterial.setDiffuseColor(Color.DARKRED);
         redMaterial.setSpecularColor(Color.RED);
@@ -85,7 +97,7 @@ public class Controller {
         group.getChildren().addAll(xAxis, yAxis, zAxis);*/
 
 
-        // Zem
+        // Hnědá zem
         Box grass = new Box(3000, 3, 3000);
         PhongMaterial material = new PhongMaterial();
         material.setDiffuseColor(Color.SADDLEBROWN);
@@ -95,6 +107,7 @@ public class Controller {
         group.getChildren().addAll(grass);
     }
 
+    /* Testovací funkce na testování želvy a kreslení */
     public void test(ActionEvent actionEvent) throws InterruptedException {
         treegroup.getChildren().clear();
 
@@ -107,6 +120,7 @@ public class Controller {
         // Kód za účelem testování
         // String code = "SLBFSlBf";
 
+        //Natvrdo nastavené parametry
         Turtle turtle = new Turtle(35, 50);
         treegroup = turtle.read(code);
         group.getChildren().add(treegroup);
@@ -117,11 +131,15 @@ public class Controller {
         Platform.exit();
     }
 
+    /* Funkce reagující na zmáčkuní tlačítka pro vykreslení */
     public void drawButton(ActionEvent actionEvent) {
+        /* zmizí původní rostlina */
         treegroup.getChildren().clear();
+        /* získají se přidaná pravidla volená uživatelem */
         ObservableList<Node> list = rulesbox.getChildren();
         Hashtable<Character,String> hash = new Hashtable<>();
 
+        /* Získání konkrétních přepisovacích pravidel a uložení do hašovací tabulky */
         for (Object rule: list)
         {
             if(((Rule) rule).getKey() != null
@@ -141,47 +159,53 @@ public class Controller {
             }
             else
             {
-                System.out.println("nastala chyba, neco spatne vyplneno");
-                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Néco nebylo vyplnéno");
+                System.out.println("nastala chyba, něco špatně vyplněno");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Nastala chyba, něco špatně vyplněno");
                 alert.showAndWait();
             }
         }
-        System.out.println(hash.toString());
+        //System.out.println(hash.toString());
         String seedfieldtext;
         int stepnumber;
         int angle;
+        /* Získání počtu kroků, seedu a úhlu */
         if( !seedfield.getText().equals("") && !stepfield.getText().equals("")
                 && !anglefield.getText().equals("")) {
             seedfieldtext = seedfield.getText();
             stepnumber = Integer.parseInt(stepfield.getText());
             angle = Integer.parseInt(anglefield.getText());
+            /* Vytvoření substituce a kódu pro želvu */
             Substitution subs = new Substitution(hash, stepnumber, seedfieldtext);
             String code = subs.getCode();
+            /* Vytvoření želvy */
             Turtle turtle = new Turtle(angle, 50);
-            System.out.println(turtle);
+            //System.out.println(turtle);
             System.out.println(code);
+            /* Předání kódu želvě a získání rostliny */
             treegroup = turtle.read(code);
+            /* Přidání rostliny na scénu */
             group.getChildren().add(treegroup);
         }
         else
         {
-            System.out.println("nastala chyba, neco nebylo vyplneno");
+            System.out.println("Nastala chyba, neco nebylo vyplneno");
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Néco nebylo vyplnéno");
             alert.showAndWait();
         }
     }
 
+    /* Přidání nového pravidla*/
     public void plusButton(ActionEvent actionEvent) {
         Rule rule = new Rule();
         rulesbox.getChildren().add(rule);
     }
-
+    /* Tlačítko help */
     public void helpfunction(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION, "Algoplants -- for D0L plants \n FJFI \n 2014/2015");
         alert.showAndWait();
     }
 
-    // Pohyb kamery
+    /* Pohyb kamery tlačítky + a - */
     // Dozadu
     public void minusCam(ActionEvent actionEvent) {
         double camy = this.camera.getTransforms().get(3).getTy();

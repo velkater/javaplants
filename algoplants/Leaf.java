@@ -1,12 +1,14 @@
 package algoplants;
 
-import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.DrawMode;
 import javafx.scene.shape.MeshView;
 import javafx.scene.shape.TriangleMesh;
-
+/* Třída pro list
+*  je tvytvořen pomocí TriangleMesh, tj. vytvářen trojůhelníky
+*  podle vzoru předkresleného na papíře
+* */
 public class Leaf extends MeshView {
     public Leaf()
     {
@@ -16,6 +18,7 @@ public class Leaf extends MeshView {
     {
         TriangleMesh leafMesh = new TriangleMesh();
         leafMesh.getTexCoords().addAll(0,0);
+        /* Přidání bodů */
         float points[] =
         {
             0,      -h,         0,            // vrch
@@ -31,6 +34,7 @@ public class Leaf extends MeshView {
             0,      (h*2)/7,    0  //vrch stonku
         };
         leafMesh.getPoints().addAll(points);
+        /* Přidání stěn */
         leafMesh.getFaces().addAll(
                 0,0,  1,0,  2,0,          // leva krajni
                 0,0,  2,0,  3,0,          // zadni

@@ -4,6 +4,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Sphere;
 
+//  Třída pro kytky (plody)
 public class Flower extends Sphere {
     public Flower() {
         this(20,Color.RED);

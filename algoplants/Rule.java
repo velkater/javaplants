@@ -4,7 +4,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 
-
+/* Třída reprezentující nové pravidlo ve uživatelském rozhraní */
 public class Rule extends HBox{
 
     TextField text;

@@ -3,11 +3,8 @@ package algoplants;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Cylinder;
-import javafx.scene.image.Image;
-import javafx.scene.transform.Translate;
 
-import java.awt.*;
-
+/* Třída pro vytváření větve */
 public class Branch extends Cylinder{
 
     public Branch() {
